@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+import React from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,6 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>{children}</body>
+      <Analytics />
+      <SpeedInsights />
     </html>
   );
 }
