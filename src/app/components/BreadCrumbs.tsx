@@ -5,10 +5,8 @@ import { usePathname } from "next/navigation";
 
 export default function BreadCrumbs() {
   const pathname = usePathname();
-  // Separamos la ruta actual en partes, ignorando el primer elemento vacío.
   const pathParts = pathname.split("/").filter((part) => part);
 
-  // Función para construir la URL acumulada para cada segmento.
   const createPath = (index: number) =>
     "/" + pathParts.slice(0, index + 1).join("/");
 
@@ -20,7 +18,7 @@ export default function BreadCrumbs() {
         </li>
         {pathParts.map((part, index) => (
           <li key={index} style={{ marginLeft: "0.5rem" }}>
-            <span> / </span>
+            <span> &gt; </span>
             <Link href={createPath(index)} className="underline">
               {part.charAt(0).toUpperCase() + part.slice(1)}
             </Link>
