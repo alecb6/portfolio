@@ -1,7 +1,7 @@
 
 export default function Body() {
   return (
-    <main>
+    <main className="p-20">
       Nuevo test
     </main>
   );
