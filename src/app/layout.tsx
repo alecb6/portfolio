@@ -1,4 +1,7 @@
 "use client";
+
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import "./globals.css";
@@ -23,6 +26,8 @@ export default function RootLayout({
             {children}
           </motion.div>
         </AnimatePresence>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
