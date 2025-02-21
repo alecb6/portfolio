@@ -1,6 +1,5 @@
 import React from "react";
 import Experience from "@/components/experience/Experience";
-import Breadcrumbs from "@/components/BreadCrumbs";
 import Header from "@/components/Header";
 
 export default function Profile() {

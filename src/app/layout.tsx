@@ -2,7 +2,6 @@
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { usePathname } from "next/navigation";
 import "./globals.css";
 
 export default function RootLayout({
@@ -10,8 +9,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-
   return (
     <html lang="es" className="dark">
       <body className="relative text-black dark:text-white !bg-black">
