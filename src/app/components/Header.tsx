@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -19,65 +20,67 @@ export default function NavigationMenuDemo() {
   const url = `${pathname}?${searchParams}`;
 
   return (
-    <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-slide-in-top shadow-xl">
-      <NavigationMenuList>
-        {url !== "/?" && (
-          <NavigationMenuItem>
-            <Link href="/" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-              >
-                Inicio
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        )}
-        {url !== "/perfil?" && (
-          <NavigationMenuItem>
-            <Link href="/perfil" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-              >
-                Perfil
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        )}
-        {url !== "/proyectos?" && (
-          <NavigationMenuItem>
-            <Link href="/proyectos" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-              >
-                Proyectos
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        )}
-        {url !== "/experiencia?" && (
-          <NavigationMenuItem>
-            <Link href="/experiencia" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-              >
-                Experiencia
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        )}
-        {url !== "/conocimientos?" && (
-          <NavigationMenuItem>
-            <Link href="/conocimientos" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-              >
-                Conocimientos
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        )}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <Suspense fallback={<div>Loading...</div>}>
+      <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-slide-in-top shadow-xl">
+        <NavigationMenuList>
+          {url !== "/?" && (
+            <NavigationMenuItem>
+              <Link href="/" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black !rounded-full`}
+                >
+                  Inicio
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+          {url !== "/perfil?" && (
+            <NavigationMenuItem>
+              <Link href="/perfil" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black !rounded-full`}
+                >
+                  Perfil
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+          {url !== "/proyectos?" && (
+            <NavigationMenuItem>
+              <Link href="/proyectos" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black !rounded-full`}
+                >
+                  Proyectos
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+          {url !== "/experiencia?" && (
+            <NavigationMenuItem>
+              <Link href="/experiencia" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black !rounded-full`}
+                >
+                  Experiencia
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+          {url !== "/conocimientos?" && (
+            <NavigationMenuItem>
+              <Link href="/conocimientos" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black !rounded-full`}
+                >
+                  Conocimientos
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </Suspense>
   );
 }
 
