@@ -26,7 +26,7 @@ function NavigationMenuContent() {
   const pathname = usePathname();
 
   return (
-    <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-blurred-fade-in shadow-xl">
+    <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-fade-in shadow-xl">
       <NavigationMenuList>
         {pathname !== "/" && (
           <NavigationMenuItem>
