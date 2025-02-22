@@ -14,16 +14,20 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export default function NavigationMenuDemo() {
+function RouteController() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const url = `${pathname}?${searchParams}`;
 
+  return url;
+}
+
+export default function NavigationMenuDemo() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-slide-in-top shadow-xl">
         <NavigationMenuList>
-          {url !== "/?" && (
+          {RouteController() !== "/?" && (
             <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink
@@ -34,7 +38,7 @@ export default function NavigationMenuDemo() {
               </Link>
             </NavigationMenuItem>
           )}
-          {url !== "/perfil?" && (
+          {RouteController() !== "/perfil?" && (
             <NavigationMenuItem>
               <Link href="/perfil" legacyBehavior passHref>
                 <NavigationMenuLink
@@ -45,7 +49,7 @@ export default function NavigationMenuDemo() {
               </Link>
             </NavigationMenuItem>
           )}
-          {url !== "/proyectos?" && (
+          {RouteController() !== "/proyectos?" && (
             <NavigationMenuItem>
               <Link href="/proyectos" legacyBehavior passHref>
                 <NavigationMenuLink
@@ -56,7 +60,7 @@ export default function NavigationMenuDemo() {
               </Link>
             </NavigationMenuItem>
           )}
-          {url !== "/experiencia?" && (
+          {RouteController() !== "/experiencia?" && (
             <NavigationMenuItem>
               <Link href="/experiencia" legacyBehavior passHref>
                 <NavigationMenuLink
@@ -67,7 +71,7 @@ export default function NavigationMenuDemo() {
               </Link>
             </NavigationMenuItem>
           )}
-          {url !== "/conocimientos?" && (
+          {RouteController() !== "/conocimientos?" && (
             <NavigationMenuItem>
               <Link href="/conocimientos" legacyBehavior passHref>
                 <NavigationMenuLink
