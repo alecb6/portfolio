@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -12,15 +14,17 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-interface HeaderProps {
-  returnButton: boolean;
-}
+export default function NavigationMenuDemo() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const url = `${pathname}?${searchParams}`;
 
-export default function NavigationMenuDemo({ returnButton }: HeaderProps) {
+  console.log("url", url);
+
   return (
-    <NavigationMenu className="bg-zinc-300 p-3 rounded-xl animate-slide-in-top">
+    <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-slide-in-top shadow-xl">
       <NavigationMenuList>
-        {returnButton && (
+        {url !== "/?" && (
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink
@@ -31,42 +35,50 @@ export default function NavigationMenuDemo({ returnButton }: HeaderProps) {
             </Link>
           </NavigationMenuItem>
         )}
-        <NavigationMenuItem>
-          <Link href="/perfil" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-            >
-              Perfil
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/proyectos" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-            >
-              Proyectos
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/experiencia" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-            >
-              Experiencia
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/conocimientos" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
-            >
-              Conocimientos
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        {url !== "/perfil?" && (
+          <NavigationMenuItem>
+            <Link href="/perfil" legacyBehavior passHref>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
+              >
+                Perfil
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        )}
+        {url !== "/proyectos?" && (
+          <NavigationMenuItem>
+            <Link href="/proyectos" legacyBehavior passHref>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
+              >
+                Proyectos
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        )}
+        {url !== "/experiencia?" && (
+          <NavigationMenuItem>
+            <Link href="/experiencia" legacyBehavior passHref>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
+              >
+                Experiencia
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        )}
+        {url !== "/conocimientos?" && (
+          <NavigationMenuItem>
+            <Link href="/conocimientos" legacyBehavior passHref>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-zinc-300 text-xl font-normal text-black`}
+              >
+                Conocimientos
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        )}
       </NavigationMenuList>
     </NavigationMenu>
   );
