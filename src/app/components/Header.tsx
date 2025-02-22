@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -18,8 +17,6 @@ export default function NavigationMenuDemo() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const url = `${pathname}?${searchParams}`;
-
-  console.log("url", url);
 
   return (
     <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-slide-in-top shadow-xl">
