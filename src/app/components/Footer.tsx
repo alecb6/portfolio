@@ -4,8 +4,6 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { RiArrowUpDoubleLine } from "react-icons/ri";
 
-import Link from "next/link";
-
 export default function Footer() {
   return (
     <div>
