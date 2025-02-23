@@ -17,6 +17,16 @@ header * {
   font-weight: 600;
 }
 
+.image-filter {
+  mask: radial-gradient(
+    circle 600px at 50% 60%,
+    #1e1e1e 0%,
+    #1e1e1e 10%,
+    #1e1e1e 40%,
+    transparent 70%
+  );
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

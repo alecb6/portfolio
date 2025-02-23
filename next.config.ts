@@ -1,6 +1,6 @@
 import {withSentryConfig} from '@sentry/nextjs';
 import type { NextConfig } from "next";
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+// const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const nextConfig: NextConfig = {
   async rewrites() {
