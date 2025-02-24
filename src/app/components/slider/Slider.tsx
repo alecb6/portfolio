@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 
 export default function Slider() {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const images = [
     { src: "/images/html.png", alt: "HTML" },
@@ -19,11 +19,12 @@ export default function Slider() {
   ];
 
   useEffect(() => {
-    const slider: any = sliderRef.current;
+    const slider = sliderRef.current;
     const speed = 1.5;
     const intervalTime = 16;
 
     const interval = setInterval(() => {
+      if (!slider) return;
       if (slider.scrollLeft >= slider.scrollWidth / 2) {
         slider.scrollLeft = 0;
       } else {
