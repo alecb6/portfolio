@@ -26,13 +26,13 @@ function NavigationMenuContent() {
   const pathname = usePathname();
 
   return (
-    <NavigationMenu className="bg-zinc-300 p-3 rounded-full animate-fade-in shadow-xl w-[100%] md:w-[600px]">
+    <NavigationMenu className="bg-zinc-400 p-3 rounded-full animate-fade-in shadow-xl w-[100%] md:w-[600px]">
       <NavigationMenuList className="w-[100%] md:w-[600px]">
         {pathname !== "/" && (
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
+                className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
               >
                 Inicio
               </NavigationMenuLink>
@@ -43,7 +43,7 @@ function NavigationMenuContent() {
           <NavigationMenuItem>
             <Link href="/perfil" legacyBehavior passHref>
               <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
+                className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
               >
                 Perfil
               </NavigationMenuLink>
@@ -54,7 +54,7 @@ function NavigationMenuContent() {
           <NavigationMenuItem>
             <Link href="/proyectos" legacyBehavior passHref>
               <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
+                className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
               >
                 Proyectos
               </NavigationMenuLink>
@@ -65,7 +65,7 @@ function NavigationMenuContent() {
           <NavigationMenuItem>
             <Link href="/experiencia" legacyBehavior passHref>
               <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
+                className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
               >
                 Experiencia
               </NavigationMenuLink>
@@ -76,7 +76,7 @@ function NavigationMenuContent() {
           <NavigationMenuItem>
             <Link href="/conocimientos" legacyBehavior passHref>
               <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-zinc-300 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
+                className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
               >
                 Conocimientos
               </NavigationMenuLink>
