@@ -19,7 +19,7 @@ header * {
 
 .image-filter {
   mask: radial-gradient(
-    circle 600px at 50% 60%,
+    circle 400px at 50% 60%,
     #1e1e1e 0%,
     #1e1e1e 10%,
     #1e1e1e 40%,
