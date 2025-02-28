@@ -2,10 +2,10 @@ export default function HtmlIcon() {
   return (
     <svg
       id="Layer_1"
-      enable-background="new 0 0 24 24"
+      enableBackground="new 0 0 24 24"
       viewBox="0 0 24 24"
       height={"65px"}
-      width={"auto"}
+      
     >
       <linearGradient
         id="SVGID_1_"
@@ -15,8 +15,8 @@ export default function HtmlIcon() {
         y1="7.275"
         y2="16.726"
       >
-        <stop offset="0" stop-color="#fff" stop-opacity=".2" />
-        <stop offset="1" stop-color="#fff" stop-opacity="0" />
+        <stop offset="0" stopColor="#fff" stopOpacity=".2" />
+        <stop offset="1" stopColor="#fff" stopOpacity="0" />
       </linearGradient>
       <g>
         <path

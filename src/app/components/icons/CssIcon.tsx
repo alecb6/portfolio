@@ -7,7 +7,7 @@ export default function CssIcon() {
       y="0px"
       viewBox="0 0 512 512"
       height={"65px"}
-      width={"auto"}
+      
     >
       <polygon
         style={{ fill: "#1572B6" }}

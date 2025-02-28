@@ -4,7 +4,7 @@ export default function HtmlIcon() {
       viewBox="0 0 58 58"
       xmlns="http://www.w3.org/2000/svg"
       height={"65px"}
-      width={"auto"}
+      
     >
       <g id="Page-1" fill="none" fillRule="evenodd">
         <g id="069---SQL-Database" fillRule="nonzero">
