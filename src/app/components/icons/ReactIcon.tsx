@@ -3,7 +3,7 @@ export default function HtmlIcon() {
     <svg
       viewBox="0 0 512 512"
       height={"65px"}
-      width={"auto"}
+      
     >
       <linearGradient
         id="linear-gradient"
@@ -13,9 +13,9 @@ export default function HtmlIcon() {
         y1="256"
         y2="256"
       >
-        <stop offset="0" stop-color="#0080de" />
-        <stop offset=".6" stop-color="#49bcff" />
-        <stop offset="1" stop-color="#61caff" />
+        <stop offset="0" stopColor="#0080de" />
+        <stop offset=".6" stopColor="#49bcff" />
+        <stop offset="1" stopColor="#61caff" />
       </linearGradient>
       <g id="Layer_29" data-name="Layer 29">
         <path

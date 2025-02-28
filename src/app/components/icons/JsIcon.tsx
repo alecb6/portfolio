@@ -2,11 +2,11 @@ export default function HtmlIcon() {
   return (
     <svg
       id="Capa_1"
-      enable-background="new 0 0 512 512"
+      enableBackground="new 0 0 512 512"
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
       height={"65px"}
-      width={"auto"}
+      
     >
       <g>
         <path d="m0 0h512v512h-512z" fill="#ffdf00" />

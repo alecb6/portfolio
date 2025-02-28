@@ -10,32 +10,55 @@ import SqlIcon from "../icons/SqlIcon";
 import LaravelIcon from "../icons/LaravelIcon";
 
 export default function Slider() {
+  const logos = [
+    <CssIcon key="css" />,
+    <HtmlIcon key="html" />,
+    <LaravelIcon key="laravel" />,
+    <JsIcon key="js" />,
+    <SqlIcon key="sql" />,
+    <ReactIcon key="react" />,
+    <PhpIcon key="php" />,
+    <JqueryIcon key="jquery" />,
+  ];
+
+  const repeatedLogos = [...logos, ...logos];
+
   return (
     <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
-      <div className="flex gap-4 whitespace-nowrap overflow-x-scroll scroll-smooth hide-scrollbar">
-        <CssIcon />
-        <HtmlIcon />
-        <LaravelIcon />
-        <JsIcon />
-        <SqlIcon />
-        <ReactIcon />
-        <PhpIcon />
-        <JqueryIcon />
+      <div className="logos-slider flex whitespace-nowrap hover:pause-animation">
+        {repeatedLogos.map((logo, index) => (
+          <div
+            className="logo-item flex-shrink-0 w-32 h-32 flex justify-center items-center"
+            key={index}
+          >
+            {logo}
+          </div>
+        ))}
       </div>
 
       <style jsx>{`
-        /* Ocultar barra de scroll para navegadores Webkit */
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
+        .logos-slider {
+          animation: slide 30s linear infinite;
+          display: flex;
+          gap: 20px;
         }
-        /* Ocultar scrollbar en Firefox */
-        .hide-scrollbar {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
+
+        .logos-slider:hover {
+          animation-play-state: paused;
         }
-        .svg {
-          height: 65px;
-          width: auto;
+
+        .logo-item svg {
+          width: 65px;
+          height: auto;
+        }
+
+        @keyframes slide {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
         }
       `}</style>
     </div>
