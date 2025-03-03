@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps) {
         />
         <meta
           property="og:image"
-          content="https://portfolio-alecb.vercel.app/images/og-image.png"
+          content="https://portfolio-alexcb.vercel.app/images/og-image.png"
         />
         <meta
           name="keywords"
