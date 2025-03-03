@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import Logo from "@/components/icons/LogoIcon";
-import Socials from "@/components/Socials";
 import {
   NavigationMenu,
   NavigationMenuItem,
