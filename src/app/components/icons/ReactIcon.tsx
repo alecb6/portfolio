@@ -2,7 +2,7 @@ export default function HtmlIcon() {
   return (
     <svg
       viewBox="0 0 512 512"
-      height={"65px"}
+      height={"55px"}
       
     >
       <linearGradient

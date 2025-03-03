@@ -4,7 +4,7 @@ export default function HtmlIcon() {
       id="Layer_1"
       enableBackground="new 0 0 24 24"
       viewBox="0 0 24 24"
-      height={"65px"}
+      height={"55px"}
       
     >
       <linearGradient
