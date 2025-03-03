@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import Logo from "@/components/icons/LogoIcon";
-
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -30,17 +30,22 @@ function NavigationMenuContent() {
 
   return (
     <nav className="bg-zinc-400 rounded-2xl animate-fade-in w-full md:w-[600px] relative">
-      <div className="flex items-center justify-between md:hidden">
+      <div className="flex items-center justify-evenly items-center md:hidden p-3 md:p-0 transition-all animate-slide-in-top">
         <Logo />
         <button onClick={() => setIsOpen(!isOpen)} className="text-black">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      <NavigationMenu className="p-3 rounded-full animate-fade-in w-[100%] md:w-[600px]">
-        <NavigationMenuList className="w-[100%] md:w-[600px] flex flex-row items-center gap-4">
+      <NavigationMenu className="md:p-3 rounded-full animate-fade-in w-[100%] md:w-[600px]">
+        <NavigationMenuList
+          className={cn(
+            "flex-col md:flex-row md:flex items-center gap-4",
+            isOpen ? "flex" : "hidden md:flex"
+          )}
+        >
           <NavigationMenuItem>
-            <NavigationMenuLink>
+            <NavigationMenuLink className="hidden md:block">
               <Logo />
             </NavigationMenuLink>
           </NavigationMenuItem>
