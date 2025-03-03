@@ -1,6 +1,4 @@
-import React from "react";
-
-const Information = React.memo(() => {
+export default function Information() {
   return (
     <div className="items-center justify-items-center min-h-screen relative overflow-hidden mt-12">
       <h1 className="text-7xl">
@@ -37,6 +35,4 @@ const Information = React.memo(() => {
       </div>
     </div>
   );
-});
-
-export default Information;
+};
