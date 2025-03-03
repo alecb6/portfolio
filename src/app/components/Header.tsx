@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import Logo from "@/components/icons/LogoIcon";
 
-import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuItem,
