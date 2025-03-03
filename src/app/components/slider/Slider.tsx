@@ -28,7 +28,7 @@ export default function Slider() {
       <div className="logos-slider flex whitespace-nowrap hover:pause-animation">
         {repeatedLogos.map((logo, index) => (
           <div
-            className="logo-item flex-shrink-0 w-32 h-32 flex justify-center items-center"
+            className="logo-item flex-shrink-0 w-32 h-[4.3rem] flex justify-center items-center opacity-40 hover:opacity-100 hover:scale-125 transition-all"
             key={index}
           >
             {logo}
@@ -38,7 +38,7 @@ export default function Slider() {
 
       <style jsx>{`
         .logos-slider {
-          animation: slide 30s linear infinite;
+          animation: slide 15s linear infinite;
           display: flex;
           gap: 20px;
         }

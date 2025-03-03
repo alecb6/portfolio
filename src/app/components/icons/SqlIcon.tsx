@@ -3,7 +3,7 @@ export default function HtmlIcon() {
     <svg
       viewBox="0 0 58 58"
       xmlns="http://www.w3.org/2000/svg"
-      height={"65px"}
+      height={"55px"}
       
     >
       <g id="Page-1" fill="none" fillRule="evenodd">

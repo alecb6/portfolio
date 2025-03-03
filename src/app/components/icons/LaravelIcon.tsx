@@ -3,7 +3,7 @@ export default function HtmlIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 -.11376601 49.74245785 51.31690859"
-      height={"65px"}
+      height={"55px"}
       
     >
       <path

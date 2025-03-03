@@ -6,7 +6,7 @@ import { RiArrowUpDoubleLine } from "react-icons/ri";
 
 export default function Footer() {
   return (
-    <div>
+    <footer>
       <div className="animate-bouncing repeat-infinite">
         <i className="relative top-8 left-[43%] text-xl">
           <RiArrowUpDoubleLine />
@@ -50,6 +50,6 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-    </div>
+    </footer>
   );
 }
