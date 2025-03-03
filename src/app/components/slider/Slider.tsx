@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import CssIcon from "../icons/CssIcon";
 import HtmlIcon from "../icons/HtmlIcon";
 import ReactIcon from "../icons/ReactIcon";
@@ -21,7 +21,7 @@ export default function Slider() {
     <JqueryIcon key="jquery" />,
   ];
 
-  const repeatedLogos = [...logos, ...logos];
+  const repeatedLogos = [...logos, ...logos, ...logos];
 
   return (
     <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
@@ -31,7 +31,14 @@ export default function Slider() {
             className="logo-item flex-shrink-0 w-32 h-[4.3rem] flex justify-center items-center opacity-40 hover:opacity-100 hover:scale-125 transition-all"
             key={index}
           >
-            {logo}
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {logo}
+            </motion.div>
           </div>
         ))}
       </div>

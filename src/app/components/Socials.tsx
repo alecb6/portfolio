@@ -2,17 +2,11 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
-import { RiArrowUpDoubleLine } from "react-icons/ri";
 
-export default function Footer() {
+export default function Socials() {
   return (
-    <footer>
-      <div className="animate-bouncing repeat-infinite">
-        <i className="relative top-8 left-[43%] text-xl">
-          <RiArrowUpDoubleLine />
-        </i>
-      </div>
-      <ul className="flex flex-row items-center gap-4 mb-14 hover:mb-12 bg-zinc-800 rounded-full p-4 hover:translate-y-0 translate-y-10 transition-all">
+    <nav className="absolute top-0 right-0 hidden md:flex flex-col items-end gap-4">
+      <ul className="flex flex-row items-center gap-4 mb-14 bg-zinc-800 rounded-bl-xl p-4">
         <li className="hover:scale-125 transform transition-all">
           <a
             target="_blank"
@@ -50,6 +44,6 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-    </footer>
+    </nav>
   );
 }

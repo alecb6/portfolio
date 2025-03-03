@@ -1,11 +1,9 @@
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import Logo from "@/components/icons/LogoIcon";
-import { cn } from "@/lib/utils";
+import Socials from "@/components/Socials";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -14,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 export default function NavigationMenuDemo() {
@@ -29,72 +28,104 @@ function NavigationMenuContent() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-zinc-400 rounded-2xl animate-fade-in w-full md:w-[600px] relative">
-      <div className="flex items-center justify-evenly items-center md:hidden p-3 md:p-0 transition-all animate-slide-in-top">
-        <Logo />
-        <button onClick={() => setIsOpen(!isOpen)} className="text-black">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+    <header className="w-9/12 md:w-fit">
+      <nav className="bg-zinc-400 rounded-2xl w-full md:w-[600px] relative">
+        <div className="flex items-center justify-between md:hidden p-3">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Logo />
+          </motion.div>
 
-      <NavigationMenu className="md:p-3 rounded-full animate-fade-in w-[100%] md:w-[600px]">
-        <NavigationMenuList
-          className={cn(
-            "flex-col md:flex-row md:flex items-center gap-4",
-            isOpen ? "flex" : "hidden md:flex"
-          )}
+          <button onClick={() => setIsOpen(!isOpen)} className="text-black">
+            {isOpen ? <X size={32} /> : <Menu size={32} />}
+          </button>
+        </div>
+
+        <NavigationMenu className="md:p-3 rounded-full w-full md:w-[600px] max-w-full">
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <NavigationMenuList className="flex flex-col md:flex-row items-center md:gap-4">
+                  <NavigationMenuItem>
+                    <NavigationMenuLink className="hidden md:block">
+                      <motion.div
+                        initial={{ opacity: 0, y: -20, x: 50 }}
+                        animate={{ rotate: 360, opacity: 1, y: 0, x: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Logo />
+                      </motion.div>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+
+                  {renderNavLink("/", "Inicio", pathname, "text-lg")}
+                  {renderNavLink(
+                    "/proyectos",
+                    "Proyectos",
+                    pathname,
+                    "text-lg"
+                  )}
+                  {renderNavLink(
+                    "/experiencia",
+                    "Experiencia",
+                    pathname,
+                    "text-lg"
+                  )}
+                  {renderNavLink(
+                    "/conocimientos",
+                    "Conocimientos",
+                    pathname,
+                    "text-lg mb-4 md:mb-0"
+                  )}
+                </NavigationMenuList>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <NavigationMenuList className="hidden md:flex flex-row items-center md:gap-4">
+            <NavigationMenuItem>
+              <NavigationMenuLink className="hidden md:block">
+                <Logo />
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            {renderNavLink("/", "Inicio", pathname)}
+            {renderNavLink("/proyectos", "Proyectos", pathname)}
+            {renderNavLink("/experiencia", "Experiencia", pathname)}
+            {renderNavLink("/conocimientos", "Conocimientos", pathname)}
+          </NavigationMenuList>
+        </NavigationMenu>
+      </nav>
+    </header>
+  );
+}
+
+// Helper para los links
+function renderNavLink(
+  href: string,
+  label: string,
+  pathname: string,
+  className?: string
+) {
+  if (pathname === href) return null;
+
+  return (
+    <NavigationMenuItem>
+      <Link href={href} legacyBehavior passHref>
+        <NavigationMenuLink
+          className={`${navigationMenuTriggerStyle()} ${className} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
         >
-          <NavigationMenuItem>
-            <NavigationMenuLink className="hidden md:block">
-              <Logo />
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          {pathname !== "/" && (
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
-                >
-                  Inicio
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-          {pathname !== "/proyectos" && (
-            <NavigationMenuItem>
-              <Link href="/proyectos" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
-                >
-                  Proyectos
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-          {pathname !== "/experiencia" && (
-            <NavigationMenuItem>
-              <Link href="/experiencia" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
-                >
-                  Experiencia
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-          {pathname !== "/conocimientos" && (
-            <NavigationMenuItem>
-              <Link href="/conocimientos" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} bg-zinc-400 md:px-4 px-1 md:text-xl text-[16px] font-normal text-black !rounded-full`}
-                >
-                  Conocimientos
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-        </NavigationMenuList>
-      </NavigationMenu>
-    </nav>
+          {label}
+        </NavigationMenuLink>
+      </Link>
+    </NavigationMenuItem>
   );
 }

@@ -4,7 +4,7 @@ import Information from "@/components/profile/Information";
 
 export default function Home() {
   return (
-    <main className="pt-12">
+    <main className="pt-20">
       <div className="bg-gray-600 w-100 p-4 text-center image-filter hidden md:flex">
         <Slider></Slider>
       </div>

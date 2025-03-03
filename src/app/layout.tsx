@@ -1,33 +1,53 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import Socials from "@/components/Socials";
 import "./globals.css";
-
 import Header from "@/components/Header";
-import Footer from "./components/Footer";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export default function RootLayout({ children }: LayoutProps) {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    scrollToTop();
+  }, [pathname]);
+
   return (
-    <html lang="es" className="dark">
+    <html lang="es" className="dark scroll-smooth">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Portfolio de Alex, desarrollador web frontend y backend."
+          content="Alex CB - Fullstack Developer Portfolio showcasing projects, skills and contact information."
+        />
+        <meta property="og:title" content="Alex CB Portfolio" />
+        <meta
+          property="og:description"
+          content="Explore my web development projects and skills."
+        />
+        <meta
+          property="og:image"
+          content="https://portfolio-alecb.vercel.app/images/og-image.png"
         />
         <meta
           name="keywords"
           content="Next.js, React, JavaScript, Vercel, Tutorial"
         />
         <meta name="author" content="Vercel" />
-        <title>Portfolio Alex</title>
+        <title>Alejandro CB | FullStack Developer Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="relative text-black dark:text-white !bg-black">
@@ -36,8 +56,18 @@ export default function RootLayout({ children }: LayoutProps) {
         </div>
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center pt-20">
           <Header />
-          {children}
-          <Footer />
+          <Socials />
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="w-full"
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
         </main>
         <SpeedInsights />
         <Analytics />
