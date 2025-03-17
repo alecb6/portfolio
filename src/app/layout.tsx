@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface LayoutProps {
   children: ReactNode;
