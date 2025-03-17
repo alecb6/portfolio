@@ -1,15 +1,15 @@
 const Information = () => {
   return (
     <div className="items-center justify-items-center relative overflow-hidden mt-12">
-      <h1 className="text-7xl text-primary">
+      <h1 className="text-7xl text-primaryText">
         <span className="flex flex-row items-center gap-4 mb-8">
           Hola
           <div className=" animate-bouncing repeat-infinite">!</div>
         </span>
       </h1>
-      <div className="relative w-[100%] md:w-[600px] h-[320px] rounded-lg flex flex-col items-center justify-center p-4 text-primary">
-        <div className="absolute top-0 right-0 border-t-4 border-r-4 border-white w-8 h-8 animate-pulsing repeat-infinite"></div>
-        <div className="absolute bottom-0 left-0 border-b-4 border-l-4 border-white w-8 h-8 animate-pulsing repeat-infinite"></div>
+      <div className="relative w-[100%] md:w-[600px] h-[320px] rounded-lg flex flex-col items-center justify-center p-4 text-primaryText">
+        <div className="absolute top-0 right-0 border-t-4 border-r-4 border-primaryText w-8 h-8 animate-pulsing repeat-infinite"></div>
+        <div className="absolute bottom-0 left-0 border-b-4 border-l-4 border-primaryText w-8 h-8 animate-pulsing repeat-infinite"></div>
         <h2 className="text-2xl mb-6">Mi nombre es Alejandro </h2>
         <div className="font-thin text-clip text-base space-y-4">
           Soy un <span className="font-bold">desarrollador web</span> apasionado

@@ -28,8 +28,8 @@ export default function ExperiencePage() {
       ],
     },
     {
-      company: "Freelance",
-      position: "Desarrollador Web",
+      company: "Empresa Familiar",
+      position: "Peón de Obra / Ayudante de Pintor",
       period: "Enero 2020 - Mayo 2021",
       description: [
         "Desarrollo de sitios web personalizados para pequeñas empresas",
@@ -61,17 +61,17 @@ export default function ExperiencePage() {
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className="bg-secondary/30 rounded-lg p-6 hover:bg-secondary/40 transition-all duration-300"
+                className="bg-secondary/30 rounded-lg p-6 hover:bg-secondary/40 text-primaryText"
               >
                 <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
                   <div className="bg-accent/50 p-3 rounded-full">
-                    <FaBuilding className="text-primary" size={24} />
+                    <FaBuilding className="text-primaryText transition-all duration-300" size={24} />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold">{exp.company}</h3>
-                    <h4 className="text-lg text-primary/80">{exp.position}</h4>
+                    <h4 className="text-lg text-primaryText">{exp.position}</h4>
                   </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
+                  <div className="flex items-center gap-2 text-muted-foreground transition-all duration-300">
                     <FaCalendarAlt size={16} />
                     <span>{exp.period}</span>
                   </div>
@@ -81,8 +81,8 @@ export default function ExperiencePage() {
                   <ul className="space-y-2">
                     {exp.description.map((desc, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <FaLaptopCode className="text-primary/70 mt-1 flex-shrink-0" />
-                        <span className="text-primary">{desc}</span>
+                        <FaLaptopCode className="text-primaryText mt-1 flex-shrink-0 transition-all duration-300" />
+                        <span className="text-primaryText">{desc}</span>
                       </li>
                     ))}
                   </ul>

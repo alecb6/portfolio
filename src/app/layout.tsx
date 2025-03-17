@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface LayoutProps {
   children: ReactNode;
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps) {
+
   return (
     <html lang="es" className="dark scroll-smooth">
       <head>

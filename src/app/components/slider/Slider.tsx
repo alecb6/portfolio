@@ -37,20 +37,19 @@ const techIcons: SliderItem[] = [
 
 export default function InfiniteSlider() {
   return (
-    <div className="scroller-container w-full overflow-hidden bg-gradient-to-r from-secondary/30 via-accent/50 to-secondary/30 py-6 my-8 rounded-lg">
+    <div className="scroller-container w-full overflow-hidden bg-gradient-to-r from-secondary/30 to-secondary/30 py-6 my-8 rounded-lg">
       <div className="scroller flex animate-scroll">
         {techIcons.map((item, index) => {
           const Icon = item.icon;
           return (
             <div
               key={`${item.name}-${index}`}
-              className="scroller-item flex flex-col items-center justify-center mx-8 min-w-[80px] text-white"
+              className="scroller-item flex flex-col items-center justify-center mx-8 min-w-[80px] text-white hover:cursor-pointer"
               title={item.name}
             >
               <Icon
                 size={50}
                 style={{ color: item.color }}
-                className="hover:scale-125 transition-all ease-in-out hover:cursor-pointer"
               />
               <span className="text-xs mt-2">{item.name}</span>
             </div>

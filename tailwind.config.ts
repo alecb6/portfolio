@@ -32,6 +32,10 @@ export default {
           DEFAULT: "var(--primary)",
           foreground: "hsl(var(--primary-foreground))",
         },
+        primaryText: {
+          DEFAULT: "var(--primary-text)",
+          foreground: "hsl(var(--primary-text-foreground"
+        },
         secondary: {
           DEFAULT: "#404040",
           foreground: "hsl(var(--secondary-foreground))",
