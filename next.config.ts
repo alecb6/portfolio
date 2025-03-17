@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  distDir: process.env.NODE_ENV === "production" ? "build" : ".next",
 };
 
 export default withSentryConfig(nextConfig, {
