@@ -10,9 +10,9 @@ interface LayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Portfolio Clone | FullStack Developer Portfolio",
+  title: "Alex Portfolio | FullStack Developer Portfolio",
   description:
-    "Portfolio Clone - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
+    "Portfolio - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Portfolio Clone - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
     images: [
       {
-        url: "https://alecb6.github.io/portfolio/og-image.png",
+        url: "https://portfolio-alexcb.vercel.app/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Portfolio Clone | FullStack Developer Portfolio",
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps) {
-
   return (
     <html lang="es" className="dark scroll-smooth">
       <head>
