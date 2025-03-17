@@ -6,6 +6,7 @@ export default function Logo() {
       viewBox="0 0 2048 2048"
       width="40"
       height="40"
+      className="hover:scale-110 transition duration-300 ease-in-out cursor-pointer"
     >
       <path
         transform="translate(0,0)"

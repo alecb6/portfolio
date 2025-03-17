@@ -1,73 +1,79 @@
 "use client";
-import { motion } from "framer-motion";
-import CssIcon from "../icons/CssIcon";
-import HtmlIcon from "../icons/HtmlIcon";
-import ReactIcon from "../icons/ReactIcon";
-import PhpIcon from "../icons/PhpIcon";
-import JqueryIcon from "../icons/JqueryIcon";
-import JsIcon from "../icons/JsIcon";
-import SqlIcon from "../icons/SqlIcon";
-import LaravelIcon from "../icons/LaravelIcon";
 
-export default function Slider() {
-  const logos = [
-    <CssIcon key="css" />,
-    <HtmlIcon key="html" />,
-    <LaravelIcon key="laravel" />,
-    <JsIcon key="js" />,
-    <SqlIcon key="sql" />,
-    <ReactIcon key="react" />,
-    <PhpIcon key="php" />,
-    <JqueryIcon key="jquery" />,
-  ];
+import React from "react";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaLaravel,
+  FaJs,
+  FaDatabase,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaServer,
+  FaCode,
+  FaPhp,
+} from "react-icons/fa";
 
-  const repeatedLogos = [...logos, ...logos, ...logos];
+type SliderItem = {
+  icon: React.ElementType;
+  color: string;
+  name: string;
+};
 
+const techIcons: SliderItem[] = [
+  { icon: FaHtml5, color: "#E44D26", name: "HTML5" },
+  { icon: FaCss3Alt, color: "#1572B6", name: "CSS3" },
+  { icon: FaJs, color: "#F7DF1E", name: "JavaScript" },
+  { icon: FaReact, color: "#61DAFB", name: "React" },
+  { icon: FaLaravel, color: "#FF2D20", name: "Laravel" },
+  { icon: FaDatabase, color: "#00758F", name: "SQL" },
+  { icon: FaNodeJs, color: "#339933", name: "Node.js" },
+  { icon: FaGitAlt, color: "#F05032", name: "Git" },
+  { icon: FaServer, color: "#6C63FF", name: "Backend" },
+  { icon: FaCode, color: "#3178C6", name: "TypeScript" },
+  { icon: FaPhp, color: "#777BB4", name: "PHP" },
+];
+
+export default function InfiniteSlider() {
   return (
-    <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
-      <div className="logos-slider flex whitespace-nowrap hover:pause-animation">
-        {repeatedLogos.map((logo, index) => (
-          <div
-            className="logo-item flex-shrink-0 w-32 h-[4.3rem] flex justify-center items-center opacity-40 hover:opacity-100 hover:scale-125 transition-all"
-            key={index}
-          >
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+    <div className="scroller-container w-full overflow-hidden bg-gradient-to-r from-secondary/30 via-accent/50 to-secondary/30 py-6 my-8 rounded-lg">
+      <div className="scroller flex animate-scroll">
+        {techIcons.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={`${item.name}-${index}`}
+              className="scroller-item flex flex-col items-center justify-center mx-8 min-w-[80px] text-white"
+              title={item.name}
             >
-              {logo}
-            </motion.div>
-          </div>
-        ))}
+              <Icon
+                size={50}
+                style={{ color: item.color }}
+                className="hover:scale-125 transition-all ease-in-out hover:cursor-pointer"
+              />
+              <span className="text-xs mt-2">{item.name}</span>
+            </div>
+          );
+        })}
+        {techIcons.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={`${item.name}-dup-${index}`}
+              className="scroller-item flex flex-col items-center justify-center mx-8 min-w-[80px] text-white"
+              title={item.name}
+            >
+              <Icon
+                size={50}
+                style={{ color: item.color }}
+                className="hover:scale-125 transition-all ease-in-out hover:cursor-pointer"
+              />
+              <span className="text-xs mt-2">{item.name}</span>
+            </div>
+          );
+        })}
       </div>
-
-      <style jsx>{`
-        .logos-slider {
-          animation: slide 15s linear infinite;
-          display: flex;
-          gap: 20px;
-        }
-
-        .logos-slider:hover {
-          animation-play-state: paused;
-        }
-
-        .logo-item svg {
-          width: 65px;
-          height: auto;
-        }
-
-        @keyframes slide {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
     </div>
   );
 }
