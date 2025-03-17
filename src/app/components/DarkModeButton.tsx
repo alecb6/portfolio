@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 function DarkTheme({ onClick }: { onClick: () => void }) {
   return (
@@ -65,12 +64,10 @@ function LightTheme({ onClick }: { onClick: () => void }) {
 }
 
 function DarkModeButton() {
-  const [storageTheme, setStorageTheme] = useLocalStorage("count", 0);
   const [theme, setTheme] = useState("dark");
 
   function handleClick() {
     setTheme(theme === "light" ? "dark" : "light");
-    setStorageTheme("theme", theme);
     document.documentElement.classList.toggle("dark");
   }
 
