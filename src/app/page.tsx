@@ -10,18 +10,18 @@ import { useEffect } from "react";
 /**
  * HomePage component renders the main page of the application.
  *
- * It uses the `usePathname` hook to determine the current path and 
- * the `useEffect` hook to scroll to the top of the page smoothly 
+ * It uses the `usePathname` hook to determine the current path and
+ * the `useEffect` hook to scroll to the top of the page smoothly
  * whenever the path changes.
  *
- * The main content is wrapped in an `AnimatePresence` and `motion.div` 
+ * The main content is wrapped in an `AnimatePresence` and `motion.div`
  * to provide animation effects on page load and change.
  *
- * Inside the component, a `Slider` component is displayed with a 
- * custom image filter and an `Information` component is displayed 
+ * Inside the component, a `Slider` component is displayed with a
+ * custom image filter and an `Information` component is displayed
  * below it, both centered using flexbox.
  *
- * The animation configuration includes a fade-in effect from below 
+ * The animation configuration includes a fade-in effect from below
  * with a duration of 0.4 seconds.
  */
 

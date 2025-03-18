@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
 * {
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+  font-family: system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 500;
 }
@@ -17,6 +19,7 @@ header {
 header * {
   font-weight: 600;
 }
+
 
 .image-filter {
   mask: radial-gradient(

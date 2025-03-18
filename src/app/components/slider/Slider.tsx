@@ -15,6 +15,8 @@ import {
   FaPhp,
 } from "react-icons/fa";
 
+import { SiNextdotjs } from "react-icons/si";
+
 type SliderItem = {
   icon: React.ElementType;
   color: string;
@@ -33,6 +35,7 @@ const techIcons: SliderItem[] = [
   { icon: FaServer, color: "#6C63FF", name: "Backend" },
   { icon: FaCode, color: "#3178C6", name: "TypeScript" },
   { icon: FaPhp, color: "#777BB4", name: "PHP" },
+  { icon: SiNextdotjs, color: "#001133", name: "NextJS" },
 ];
 
 export default function InfiniteSlider() {

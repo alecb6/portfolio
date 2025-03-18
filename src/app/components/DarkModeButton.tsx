@@ -1,85 +1,38 @@
-import { useState } from "react";
+"use client"
 
-function DarkTheme({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="inline-flex items-center space-x-3 justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-neutral-700 focus-visible:ring-neutral-500 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 h-9 w-9 group opacity-80 transition-opacity duration-150 hover:opacity-100"
-      title="Change theme"
-      data-button-root=""
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide-icon lucide lucide-sun duration-500 group-hover:rotate-12"
-      >
-        <circle cx="12" cy="12" r="4"></circle>
-        <path d="M12 2v2"></path>
-        <path d="M12 20v2"></path>
-        <path d="m4.93 4.93 1.41 1.41"></path>
-        <path d="m17.66 17.66 1.41 1.41"></path>
-        <path d="M2 12h2"></path>
-        <path d="M20 12h2"></path>
-        <path d="m6.34 17.66-1.41 1.41"></path>
-        <path d="m19.07 4.93-1.41 1.41"></path>
-      </svg>
-      <span className="sr-only">Toggle theme</span>
+import { PiSunDimFill } from 'react-icons/pi'
+import { BiSolidMoon } from 'react-icons/bi'
+import { useTheme } from 'next-themes';
+
+const ThemeSwitch: React.FC = () => {
+
+    const { theme, setTheme } = useTheme();
+
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light");
+    };
+
+    const isActive = theme === "light";
+
+    const switchClasses = `flex items-center justify-center w-6 h-6 text-dark  rounded-full transform ${
+
+    isActive ? 'translate-x-0 bg-white' : 'translate-x-6 bg-black'
+
+    } transition-transform duration-500 ease-in-out`;
+
+
+return (
+
+<div className="relative w-14 h-8 rounded-full p-1 cursor-pointer bg-[#ccc]" onClick={toggleTheme}>
+
+    <button className={switchClasses}>
+
+    {isActive ? <PiSunDimFill size={16} /> : <BiSolidMoon size={16}/>}
+
     </button>
-  );
-}
-function LightTheme({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="inline-flex items-center space-x-3 justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-neutral-700 focus-visible:ring-neutral-500 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 h-9 w-9 group opacity-80 transition-opacity duration-150 hover:opacity-100"
-      title="Change theme"
-      data-button-root=""
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide-icon lucide lucide-moon duration-500 group-hover:-rotate-12"
-      >
-        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-      </svg>
-      <span className="sr-only">Toggle theme</span>
-    </button>
-  );
-}
 
-function DarkModeButton() {
-  const [theme, setTheme] = useState("dark");
+</div>
 
-  function handleClick() {
-    setTheme(theme === "light" ? "dark" : "light");
-    document.documentElement.classList.toggle("dark");
-  }
+)};
 
-  return (
-    <>
-      {theme !== "dark" ? (
-        <DarkTheme onClick={handleClick} />
-      ) : (
-        <LightTheme onClick={handleClick} />
-      )}
-    </>
-  );
-}
-
-export default DarkModeButton;
+export default ThemeSwitch;

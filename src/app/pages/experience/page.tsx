@@ -55,7 +55,7 @@ export default function ExperiencePage() {
         className="w-full"
       >
         <div className="flex flex-col items-center max-w-4xl mx-auto mt-16">
-          <h1 className="text-5xl font-bold mb-16 text-center text-primary">Experiencia</h1>
+          <h1 className="text-5xl font-bold mb-16 text-center text-primaryText">Experiencia</h1>
 
           <div className="w-full space-y-10">
             {experiences.map((exp, index) => (
