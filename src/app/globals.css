@@ -20,7 +20,6 @@ header * {
   font-weight: 600;
 }
 
-
 .image-filter {
   mask: radial-gradient(
     circle 600px at 50% 60%,

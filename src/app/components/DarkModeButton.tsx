@@ -1,5 +1,3 @@
-"use client"
-
 import { PiSunDimFill } from 'react-icons/pi'
 import { BiSolidMoon } from 'react-icons/bi'
 import { useTheme } from 'next-themes';

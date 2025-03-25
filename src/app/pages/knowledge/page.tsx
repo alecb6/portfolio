@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import ClickSpark from "@/components/ui/ClickSpark";
 
 /**
  * This component renders the knowledge page, which is a page that is
@@ -31,9 +32,17 @@ export default function Knowledge() {
         transition={{ duration: 0.4 }}
         className="w-full"
       >
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center pt-12">
-          <h1 className="text-3xl">Conocimiento</h1>
-        </div>
+        <ClickSpark
+          sparkColor="#fff"
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
+        >
+          <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center pt-12">
+            <h1 className="text-3xl">Conocimiento</h1>
+          </div>
+        </ClickSpark>
       </motion.div>
     </AnimatePresence>
   );

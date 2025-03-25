@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps) {
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className=" bg-primary dark:bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] antialiased">
+      <body className="bg-primary dark:bg-zinc-900 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
           <main className="container mx-auto px-4 py-4">{children}</main>
