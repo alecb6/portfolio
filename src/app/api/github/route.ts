@@ -30,10 +30,6 @@ export async function GET() {
       next: { revalidate: 3600 },
     });
 
-    if (!response.ok) {
-      return NextResponse.json({ error: "Error al obtener los repositorios" }, { status: 500 });
-    }
-
     const repos: GitHubRepo[] = await response.json();
 
     const projects: Repo[] = repos
