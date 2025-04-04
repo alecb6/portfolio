@@ -13,9 +13,8 @@ export default function ExperiencePage() {
       position: "Desarrollador Web",
       period: "Febrero 2024 - Presente",
       description: [
-        "Desarrollo y mantenimiento de aplicaciones web con React y Laravel",
-        "Optimización de bases de datos SQL y mejora de rendimiento",
-        "Colaboración en equipos ágiles utilizando metodología Scrum",
+        "Desarrollo y mantenimiento de aplicaciones web con Laravel y PHP",
+        "Uso de consultas de base de datos MySQL y optimización de rendimiento",
         "Creación de interfaces de usuario con HTML, CSS y JavaScript",
         "Integración de APIs y desarrollo de componentes interactivos",
         "Adaptación de diseños para diferentes dispositivos (responsive)",
