@@ -5,9 +5,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
 * {
-  font-family: system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  font-family: system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    Segoe UI Symbol, "Noto Color Emoji";
   font-weight: 500;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
@@ -16,8 +22,18 @@ header {
   z-index: 99;
 }
 
-header * {
-  font-weight: 600;
+@media (min-width: 768px) {
+  header {
+    animation: header-blur-scroll 0.5s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 250px;
+  }
+
+  header nav div ul {
+    animation: header-gap-close 0.5s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 250px;
+  }
 }
 
 .image-filter {
@@ -31,7 +47,12 @@ header * {
 }
 
 .tech-icons-container {
-  background: linear-gradient(to right, rgba(25, 23, 28, 0.1), rgba(55, 65, 81, 0.7), rgba(25, 23, 28, 0.1));
+  background: linear-gradient(
+    to right,
+    rgba(25, 23, 28, 0.1),
+    rgba(55, 65, 81, 0.7),
+    rgba(25, 23, 28, 0.1)
+  );
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -68,6 +89,32 @@ header * {
 
 .scroller-item:hover {
   transform: scale(1.15);
+}
+
+@keyframes header-blur-scroll {
+  0% {
+    backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    backdrop-filter: blur(10px);
+    background: rgb(64 64 64 / 0.6);
+    width: 50%;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes header-gap-close {
+  0% {
+    gap: 60px;
+  }
+  100% {
+    gap: 10px;
+  }
 }
 
 @layer base {

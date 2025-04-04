@@ -39,16 +39,15 @@ function NavigationMenuContent() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-secondary/60 rounded-xl max-w-3xl mx-20 md:mx-auto my-6 backdrop-blur-sm">
+    <header className="w-8/12 bg-secondary/60 rounded-b-xl md:h-20 md:flex md:items-center rounded-xl backdrop-blur-md">
       <div className="flex items-center justify-between md:hidden p-3">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex items-center space-x-4">
-          <DarkModeButton />
-          <Logo />
+          <div className="flex items-center space-x-4 md:absolute md:-left-[165px]">
+            <Logo />
           </div>
         </motion.div>
 
@@ -57,7 +56,7 @@ function NavigationMenuContent() {
         </button>
       </div>
 
-      <NavigationMenu className="md:p-3 rounded-full w-full px-10 max-w-full">
+      <NavigationMenu className="md:p-3 md:px-8 rounded-full px-10 mx-auto bg-none">
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -67,14 +66,15 @@ function NavigationMenuContent() {
               transition={{ duration: 0.5, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <NavigationMenuList className="flex flex-col md:flex-row items-center md:gap-4">
+              <NavigationMenuList className="flex flex-col items-center md:hidden">
                 <NavigationMenuItem>
-                  <NavigationMenuLink className="hidden md:block">
+                  <NavigationMenuLink className="hidden md:block ">
                     <motion.div
                       initial={{ opacity: 0, y: -20, x: 50 }}
                       animate={{ rotate: 360, opacity: 1, y: 0, x: 0 }}
                       transition={{ duration: 0.5 }}
                     >
+                      <DarkModeButton />
                       <Logo />
                     </motion.div>
                   </NavigationMenuLink>
@@ -98,8 +98,7 @@ function NavigationMenuContent() {
             </motion.div>
           )}
         </AnimatePresence>
-        <NavigationMenuList className="hidden md:flex flex-row items-center md:gap-4">
-          <DarkModeButton />
+        <NavigationMenuList className="hidden md:flex flex-row items-center md:gap-16">
           <NavigationMenuItem>
             <NavigationMenuLink className="hidden md:block">
               <Logo />
@@ -146,7 +145,10 @@ function NavigationMenuContent() {
           </div>
         </NavigationMenuList>
       </NavigationMenu>
-    </nav>
+      <div className="absolute right-12 top-6 hidden md:flex">
+        <DarkModeButton />
+      </div>
+    </header>
   );
 }
 

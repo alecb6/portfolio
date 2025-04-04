@@ -10,15 +10,20 @@ interface Repo {
   id: number;
   name: string;
   description: string;
-  url: string;
+  html_url: string;
   language: string;
   topics: string[];
-  image: string;
+  created_at: string;
+  owner: {
+    avatar_url: string;
+  };
 }
 
 async function getRepos(): Promise<Repo[]> {
   try {
-    const res = await fetch(`/api/github`, { cache: "no-store" });
+    const res = await fetch(`https://api.github.com/users/alecb6/repos`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       console.error(
@@ -30,7 +35,6 @@ async function getRepos(): Promise<Repo[]> {
     }
 
     const data = await res.json();
-    console.log("Datos recibidos:", data);
 
     if (!Array.isArray(data)) {
       console.error("La API no devolvió un array:", data);
@@ -78,19 +82,21 @@ export default function Projects() {
         >
           <div className="flex flex-col items-center max-w-4xl mx-auto mt-16">
             <h1 className="text-5xl font-bold mb-16 text-center text-primaryText">
-              Proyectos
+              Proyectos y Contribuciones
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
               {repos.length === 0 ? (
-                <p className="text-gray-500 text-center">
-                  Cargando proyectos...
-                </p>
+                <div className="flex flex-col items-center justify-center h-full">
+                  <p className="text-gray-500 text-center">
+                    Cargando proyectos...
+                  </p>
+                </div>
               ) : (
                 repos.map((repo) => (
                   <SpotlightCard
                     key={repo.id}
-                    className="custom-spotlight-card will-change-auto bg-white dark:bg-secondary"
-                    spotlightColor="rgba(0, 229, 255, 0.2)"
+                    className="custom-spotlight-card will-change-auto dark:shadow-none shadow-zinc-500 shadow-md bg-slate-100 dark:bg-secondary"
+                    mode={localStorage.getItem("theme")}
                   >
                     <div className="flex flex-col md:flex-row md:items-center justify-between">
                       <h3 className="text-lg font-semibold text-primaryText">
@@ -98,7 +104,7 @@ export default function Projects() {
                       </h3>
                       <div className="bg-accent/50 p-3 rounded-full">
                         <img
-                          src={repo.image}
+                          src={repo.owner.avatar_url}
                           alt="Avatar"
                           className="w-12 h-12 rounded-full"
                         />
@@ -108,10 +114,17 @@ export default function Projects() {
                       {repo.description}
                     </p>
                     <p className="text-xs text-primaryText">
-                      Lenguaje: {repo.language}
+                      {repo.language != "" ? "Lenguaje: " + repo.language : ""}
+                    </p>
+                    <p>
+                      {repo.topics.map((id, topic) => (
+                        <span key={id} className="font-thin">
+                          {id} {topic},{" "}
+                        </span>
+                      ))}
                     </p>
                     <a
-                      href={repo.url}
+                      href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-500 hover:underline mt-2 inline-block"

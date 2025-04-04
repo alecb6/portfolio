@@ -11,18 +11,11 @@ export default function ExperiencePage() {
     {
       company: "Empresa Tecnológica",
       position: "Desarrollador Web",
-      period: "Enero 2023 - Presente",
+      period: "Febrero 2024 - Presente",
       description: [
         "Desarrollo y mantenimiento de aplicaciones web con React y Laravel",
         "Optimización de bases de datos SQL y mejora de rendimiento",
         "Colaboración en equipos ágiles utilizando metodología Scrum",
-      ],
-    },
-    {
-      company: "Agencia Digital",
-      position: "Desarrollador Frontend",
-      period: "Junio 2021 - Diciembre 2022",
-      description: [
         "Creación de interfaces de usuario con HTML, CSS y JavaScript",
         "Integración de APIs y desarrollo de componentes interactivos",
         "Adaptación de diseños para diferentes dispositivos (responsive)",
@@ -31,12 +24,8 @@ export default function ExperiencePage() {
     {
       company: "Empresa Familiar",
       position: "Peón de Obra / Ayudante de Pintor",
-      period: "Enero 2020 - Mayo 2021",
-      description: [
-        "Desarrollo de sitios web personalizados para pequeñas empresas",
-        "Implementación de soluciones e-commerce",
-        "Mantenimiento y actualización de sitios existentes",
-      ],
+      period: "2020 - 2024",
+      description: [],
     },
   ];
 
@@ -94,12 +83,14 @@ export default function ExperiencePage() {
 
                   <div className="mt-4 ml-4 border-l-2 border-accent/50 pl-6">
                     <ul className="space-y-2">
-                      {exp.description.map((desc, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <FaLaptopCode className="text-primaryText mt-1 flex-shrink-0 transition-all duration-300" />
-                          <span className="text-primaryText">{desc}</span>
-                        </li>
-                      ))}
+                      {exp.description.length >= 1
+                        ? exp.description.map((desc, idx) => (
+                            <li key={idx} className="flex items-start gap-3">
+                              <FaLaptopCode className="text-primaryText mt-1 flex-shrink-0 transition-all duration-300" />
+                              <span className="text-primaryText">{desc}</span>
+                            </li>
+                          ))
+                        : ""}
                     </ul>
                   </div>
                 </div>
