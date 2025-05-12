@@ -41,5 +41,6 @@ npm install
 # Ejecutar el servidor de desarrollo
 npm run dev
 
-Puedes contactarme a través de LinkedIn o cananpa2014.jr@gmail.com.
 ```
+
+Puedes contactarme a través de LinkedIn o cananpa2014.jr@gmail.com.
