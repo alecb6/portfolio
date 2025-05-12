@@ -17,15 +17,14 @@ Este es mi portafolio personal desarrollado con tecnologías modernas como **Rea
 
 ## 📁 Estructura del proyecto
 
-portfolio/
-├── public/
-├── src/
-│ ├── components/
-│ ├── pages/
-│ └── assets/
-├── index.html
-├── package.json
-└── vite.config.js
+- portfolio/
+    - public/
+    - src/
+        - components/
+        - pages/
+        - assets/
+    - package.json
+    - vite.config.js
 
 ## 📦 Instalación y uso
 
@@ -42,4 +41,5 @@ npm install
 # Ejecutar el servidor de desarrollo
 npm run dev
 
-Puedes contactarme a través de LinkedIn o alecb6@gmail.com.
+Puedes contactarme a través de LinkedIn o cananpa2014.jr@gmail.com.
+```
