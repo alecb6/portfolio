@@ -11,15 +11,15 @@ interface LayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Alex Portfolio | FullStack Developer Portfolio",
+  title: "Alejandro Cruz Ballestero | FullStack Developer Portfolio",
   description:
     "Portfolio - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: "https://portfolio-alexcb.vercel.app",
-    siteName: "Alex Portfolio | FullStack Developer Portfolio",
-    title: "Alex Portfolio | FullStack Developer Portfolio",
+    siteName: "Alejandro Cruz Ballestero | FullStack Developer Portfolio",
+    title: "Alejandro Cruz Ballestero | FullStack Developer Portfolio",
     description:
       "Portfolio - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "https://portfolio-alexcb.vercel.app/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Alex Portfolio | FullStack Developer Portfolio",
+        alt: "Alejandro Cruz Ballestero | FullStack Developer Portfolio",
       },
     ],
   },
