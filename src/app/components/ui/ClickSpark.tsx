@@ -36,13 +36,11 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const parent = canvas.parentElement;
-    if (!parent) return;
-
     let resizeTimeout: NodeJS.Timeout;
 
+    // El lienzo ocupa la ventana (es fijo), no toda la página
     const resizeCanvas = () => {
-      const { width, height } = parent.getBoundingClientRect();
+      const { innerWidth: width, innerHeight: height } = window;
       if (canvas.width !== width || canvas.height !== height) {
         canvas.width = width;
         canvas.height = height;
@@ -54,16 +52,14 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
       resizeTimeout = setTimeout(resizeCanvas, 100); // Debounce by 100ms
     };
 
-    // Observe size changes
-    const ro = new ResizeObserver(handleResize);
-    ro.observe(parent);
+    window.addEventListener("resize", handleResize);
 
     // Initial sizing
     resizeCanvas();
 
     // Cleanup
     return () => {
-      ro.disconnect();
+      window.removeEventListener("resize", handleResize);
       clearTimeout(resizeTimeout);
     };
   }, []);
@@ -168,7 +164,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     <div className="relative w-full h-full" onClick={handleClick}>
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
+        className="fixed inset-0 z-[60] pointer-events-none"
       />
       {children}
     </div>

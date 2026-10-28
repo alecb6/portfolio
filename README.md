@@ -8,33 +8,46 @@ Mi portafolio personal: quién soy, mis proyectos, mi experiencia y las tecnolog
 
 ## 🧩 Secciones
 
-- **Inicio**: presentación y tecnologías principales.
-- **Proyectos**: proyectos destacados (con capturas, tecnologías y enlaces) y, debajo, el resto de mis repositorios públicos, cargados con la API de GitHub.
-- **Experiencia**: trayectoria profesional.
-- **Conocimientos**: tecnologías agrupadas por área.
+Una sola página con scroll, en tonos beige y naranja, con modo oscuro cálido:
+
+- **Inicio**: presentación, qué hago ahora mismo y descarga del CV.
+- **En cifras**: contadores animados y datos de OpoAlertas.
+- **Proyectos**: proyectos destacados con capturas, tecnologías y enlaces.
+- **GitHub en directo**: repositorios públicos, última actividad y lenguajes, cargados con la API de GitHub.
+- **Experiencia y formación**, **Conocimientos** y **Contacto** (copia el email con un clic).
+
+Las direcciones antiguas (`/proyectos`, `/experiencia`, `/conocimientos`) redirigen a su sección.
 
 ## 🚀 Tecnologías utilizadas
 
 - [Next.js 15](https://nextjs.org/) (App Router) y [React 19](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://motion.dev/) para las animaciones
+- [Tailwind CSS](https://tailwindcss.com/) con los colores como variables CSS (`src/app/globals.css`)
+- [Framer Motion](https://motion.dev/) para las animaciones (respeta «reducir movimiento»)
 - [next-themes](https://github.com/pacocoursey/next-themes) para el modo claro y oscuro
+- Fuentes Fraunces, Inter y JetBrains Mono con `next/font`
 - [Sentry](https://sentry.io/) y Vercel Analytics / Speed Insights
 
 ## 📁 Estructura del proyecto
 
 ```
 portfolio/
+├── cv/cv.html                 # Fuente del CV en PDF
 ├── public/
-│   └── images/            # Imagen para redes y capturas de los proyectos
-├── src/app/
-│   ├── components/        # Cabecera, slider, iconos y componentes de UI
-│   ├── data/projects.ts   # Proyectos destacados
-│   ├── pages/             # Proyectos, experiencia y conocimientos
-│   ├── layout.tsx
-│   └── page.tsx           # Inicio
-└── next.config.ts         # Rutas en español (/proyectos, /experiencia, /conocimientos)
+│   ├── cv/                    # CV descargable
+│   └── images/                # Imagen para redes y capturas de los proyectos
+└── src/app/
+    ├── components/
+    │   ├── sections/          # Una sección de la página por archivo
+    │   ├── slider/            # Tira de tecnologías
+    │   └── ui/                # Tarjetas, contadores, animaciones...
+    ├── data/
+    │   ├── profile.ts         # Datos personales, experiencia, formación, conocimientos y cifras
+    │   └── projects.ts        # Proyectos destacados
+    ├── hooks/useGithubRepos.ts
+    ├── globals.css            # Paleta y estilos base
+    ├── layout.tsx
+    └── page.tsx
 ```
 
 ## ✏️ Añadir un proyecto destacado

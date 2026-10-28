@@ -2,79 +2,84 @@
 
 import React from "react";
 import {
-  FaHtml5,
   FaCss3Alt,
-  FaLaravel,
-  FaJs,
-  FaDatabase,
-  FaReact,
-  FaNodeJs,
   FaGitAlt,
+  FaHtml5,
+  FaJs,
+  FaLaravel,
+  FaNodeJs,
   FaPhp,
+  FaReact,
 } from "react-icons/fa";
-
-import { SiNextdotjs, SiSymfony, SiTailwindcss, SiTypescript } from "react-icons/si";
+import {
+  SiAstro,
+  SiMysql,
+  SiNextdotjs,
+  SiSymfony,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 
 type SliderItem = {
   icon: React.ElementType;
-  color: string;
+  // Color de la marca al pasar el ratón; sin color, el del texto
+  color?: string;
   name: string;
 };
 
 const techIcons: SliderItem[] = [
   { icon: FaHtml5, color: "#E44D26", name: "HTML5" },
   { icon: FaCss3Alt, color: "#1572B6", name: "CSS3" },
-  { icon: FaJs, color: "#F7DF1E", name: "JavaScript" },
-  { icon: FaReact, color: "#61DAFB", name: "React" },
+  { icon: FaJs, color: "#E8B500", name: "JavaScript" },
+  { icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
+  { icon: FaReact, color: "#149ECA", name: "React" },
+  { icon: SiNextdotjs, name: "Next.js" },
+  { icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind CSS" },
+  { icon: SiAstro, color: "#FF5D01", name: "Astro" },
+  { icon: FaPhp, color: "#777BB4", name: "PHP" },
   { icon: FaLaravel, color: "#FF2D20", name: "Laravel" },
-  { icon: FaDatabase, color: "#00758F", name: "SQL" },
+  { icon: SiSymfony, name: "Symfony" },
+  { icon: SiMysql, color: "#00758F", name: "MySQL" },
   { icon: FaNodeJs, color: "#339933", name: "Node.js" },
   { icon: FaGitAlt, color: "#F05032", name: "Git" },
-  { icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
-  { icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind CSS" },
-  { icon: SiSymfony, color: "#FFFFFF", name: "Symfony" },
-  { icon: FaPhp, color: "#777BB4", name: "PHP" },
-  { icon: SiNextdotjs, color: "#001133", name: "NextJS" },
 ];
 
-export default function InfiniteSlider() {
+function Row({ hidden = false }: { hidden?: boolean }) {
   return (
-    <div className="scroller-container w-full overflow-hidden bg-gradient-to-r from-secondary/30 to-secondary/30 py-6 my-8 rounded-lg">
-      <div className="scroller flex animate-scroll">
-        {techIcons.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={`${item.name}-${index}`}
-              className="scroller-item flex flex-col items-center justify-center mx-8 min-w-[80px] text-white hover:cursor-pointer"
-              title={item.name}
-            >
-              <Icon
-                size={50}
-                style={{ color: item.color }}
-              />
-              <span className="text-xs mt-2">{item.name}</span>
-            </div>
-          );
-        })}
-        {techIcons.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={`${item.name}-dup-${index}`}
-              className="scroller-item flex flex-col items-center justify-center mx-8 min-w-[80px] text-white"
-              title={item.name}
-            >
-              <Icon
-                size={50}
-                style={{ color: item.color }}
-                className="hover:scale-125 transition-all ease-in-out hover:cursor-pointer"
-              />
-              <span className="text-xs mt-2">{item.name}</span>
-            </div>
-          );
-        })}
+    <ul className="flex shrink-0 items-center" aria-hidden={hidden}>
+      {techIcons.map(({ icon: Icon, color, name }) => (
+        <li
+          key={name}
+          className="group flex min-w-[96px] flex-col items-center gap-2 px-5 text-muted"
+          style={
+            { "--brand": color ?? "rgb(var(--ink))" } as React.CSSProperties
+          }
+        >
+          <Icon
+            size={36}
+            className="transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110 group-hover:text-[color:var(--brand)]"
+          />
+          <span className="text-xs transition-colors group-hover:text-ink">
+            {name}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function TechStrip() {
+  return (
+    <section
+      aria-label="Tecnologías con las que trabajo"
+      className="border-y border-line bg-surface/60 py-7"
+    >
+      <div className="marquee overflow-hidden">
+        <div className="flex w-max animate-scroll">
+          <Row />
+          <Row hidden />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,175 +1,171 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Suspense } from "react";
-import Logo from "@/components/icons/LogoIcon";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { FaGithub, FaInstagram, FaXTwitter, FaLinkedin } from "react-icons/fa6";
-
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import DarkModeButton from "./DarkModeButton";
+import { useEffect, useState } from "react";
+import { FaGithub, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import Logo from "@/components/icons/LogoIcon";
+import ThemeToggle from "@/components/ThemeToggle";
+import { profile } from "@/data/profile";
 
-export default function NavigationMenuDemo() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <NavigationMenuContent />
-    </Suspense>
-  );
+const links = [
+  { id: "proyectos", label: "Proyectos" },
+  { id: "experiencia", label: "Experiencia" },
+  { id: "conocimientos", label: "Conocimientos" },
+  { id: "contacto", label: "Contacto" },
+];
+
+const socials = [
+  { href: profile.socials.github, label: "GitHub", icon: FaGithub },
+  { href: profile.socials.linkedin, label: "LinkedIn", icon: FaLinkedin },
+  { href: profile.socials.instagram, label: "Instagram", icon: FaInstagram },
+  { href: profile.socials.x, label: "X", icon: FaXTwitter },
+];
+
+// Secciones sin enlace propio que cuentan como otra del menú
+const sectionAliases: Record<string, string> = { github: "proyectos" };
+
+// Marca el enlace de la sección que se está leyendo
+function useActiveSection() {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>("main section[id]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = sectionAliases[entry.target.id] ?? entry.target.id;
+          // En el inicio o en las cifras no se marca ningún enlace
+          setActive(links.some((link) => link.id === id) ? id : null);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  return active;
 }
 
-/**
- * NavigationMenuContent renders the main navigation menu with responsive behavior.
- * It includes a logo, toggle button for mobile view, and navigation links.
- * The menu items animate in and out based on the isOpen state.
- * Social media links are displayed in larger screens.
- * Uses framer-motion for animations and next/navigation for current path detection.
- */
-
-function NavigationMenuContent() {
-  const pathname = usePathname();
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const active = useActiveSection();
 
   return (
-    <header className="w-8/12 bg-secondary/60 rounded-b-xl md:h-20 md:flex md:items-center rounded-xl backdrop-blur-md">
-      <div className="flex items-center justify-between md:hidden p-3">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex items-center space-x-4 md:absolute md:-left-[165px]">
+    <div className="fixed inset-x-0 top-4 z-50 px-4">
+      <motion.header
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="site-header mx-auto max-w-6xl rounded-full border border-line bg-surface/80 px-3 py-3 backdrop-blur-md md:px-4"
+      >
+        <nav className="flex items-center justify-between gap-4">
+          <a
+            href="#inicio"
+            aria-label="Ir al inicio"
+            className="rounded-xl transition-transform hover:-rotate-6"
+          >
             <Logo />
+          </a>
+
+          <ul className="hidden items-center gap-1 md:flex">
+            {links.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className={`relative block rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    active === id ? "text-ink" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {active === id && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute inset-0 -z-10 rounded-full bg-accent-soft"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 32,
+                      }}
+                    />
+                  )}
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-1 lg:flex">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="grid size-9 place-items-center rounded-full text-muted transition-all hover:-translate-y-0.5 hover:text-accent-ink"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isOpen}
+              className="grid size-10 place-items-center rounded-full border border-line bg-surface md:hidden"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
-        </motion.div>
+        </nav>
+      </motion.header>
 
-        <button onClick={() => setIsOpen(!isOpen)} className="text-black">
-          {isOpen ? <X size={32} /> : <Menu size={32} />}
-        </button>
-      </div>
-
-      <NavigationMenu className="md:p-3 md:px-8 rounded-full px-10 mx-auto bg-none">
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <NavigationMenuList className="flex flex-col items-center md:hidden">
-                <NavigationMenuItem>
-                  <NavigationMenuLink className="hidden md:block ">
-                    <motion.div
-                      initial={{ opacity: 0, y: -20, x: 50 }}
-                      animate={{ rotate: 360, opacity: 1, y: 0, x: 0 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <DarkModeButton />
-                      <Logo />
-                    </motion.div>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                {renderNavLink("/", "Inicio", pathname, "text-lg")}
-                {renderNavLink("/proyectos", "Proyectos", pathname, "text-lg")}
-                {renderNavLink(
-                  "/experiencia",
-                  "Experiencia",
-                  pathname,
-                  "text-lg"
-                )}
-                {renderNavLink(
-                  "/conocimientos",
-                  "Conocimientos",
-                  pathname,
-                  "text-lg mb-4 md:mb-0"
-                )}
-              </NavigationMenuList>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <NavigationMenuList className="hidden md:flex flex-row items-center md:gap-16">
-          <NavigationMenuItem>
-            <NavigationMenuLink className="hidden md:block">
-              <Logo />
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-
-          {renderNavLink("/", "Inicio", pathname)}
-          {renderNavLink("/proyectos", "Proyectos", pathname)}
-          {renderNavLink("/experiencia", "Experiencia", pathname)}
-          {renderNavLink("/conocimientos", "Conocimientos", pathname)}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link
-              href="https://github.com/alecb6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/70 hover:scale-125 transition-all ease-in-out"
-            >
-              <FaGithub size={24} />
-            </Link>
-            <Link
-              href="https://www.instagram.com/alecb6/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/70 hover:scale-125 transition-all ease-in-out"
-            >
-              <FaInstagram size={24} />
-            </Link>
-            <Link
-              href="https://x.com/alecb2003"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/70 hover:scale-125 transition-all ease-in-out"
-            >
-              <FaXTwitter size={24} />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/alejandro-cruz-ballestero-347a87349/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/70 hover:scale-125 transition-all ease-in-out"
-            >
-              <FaLinkedin size={24} />
-            </Link>
-          </div>
-          <NavigationMenuItem>
-            <DarkModeButton />
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </header>
-  );
-}
-
-// Helper para los links
-function renderNavLink(
-  href: string,
-  label: string,
-  pathname: string,
-  className?: string
-) {
-  if (pathname === href) return null;
-
-  return (
-    <NavigationMenuItem>
-      <Link href={href} legacyBehavior passHref>
-        <NavigationMenuLink
-          className={`${navigationMenuTriggerStyle()} ${className} bg-none md:px-4 px-1 md:text-xl text-[16px] font-normal text-white !rounded-full`}
-        >
-          {label}
-        </NavigationMenuLink>
-      </Link>
-    </NavigationMenuItem>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="card mx-auto mt-2 max-w-6xl p-3 shadow-lg md:hidden"
+          >
+            <ul className="flex flex-col">
+              {links.map(({ id, label }) => (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    onClick={() => setIsOpen(false)}
+                    className="block rounded-2xl px-4 py-3 font-medium hover:bg-accent-soft"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-2 flex gap-2 border-t border-line px-2 pt-3">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="grid size-10 place-items-center rounded-full text-muted hover:text-accent-ink"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

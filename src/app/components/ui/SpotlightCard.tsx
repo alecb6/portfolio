@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 
 interface Position {
@@ -7,66 +9,37 @@ interface Position {
 
 interface SpotlightCardProps extends React.PropsWithChildren {
   className?: string;
-  mode?: string | null;
 }
 
+// Tarjeta con un foco de luz cálido que sigue al ratón
 const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = "",
-  mode = "dark",
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState<boolean>(false);
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState<number>(0);
 
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    if (!divRef.current || isFocused) return;
-
+    if (!divRef.current) return;
     const rect = divRef.current.getBoundingClientRect();
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-    setOpacity(0.6);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-    setOpacity(0);
-  };
-
-  const handleMouseEnter = () => {
-    setOpacity(0.6);
-  };
-
-  const handleMouseLeave = () => {
-    setOpacity(0);
   };
 
   return (
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative rounded-3xl bg-neutral-900 overflow-hidden p-8 ${className}`}
+      onMouseEnter={() => setOpacity(1)}
+      onMouseLeave={() => setOpacity(0)}
+      className={`relative overflow-hidden ${className}`}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-500"
         style={{
           opacity,
-          transition: `opacity 0.5s linear both`,
-          background: `radial-gradient(circle at ${position.x}px ${
-            position.y
-          }px, ${
-            mode === "dark"
-              ? "rgba(255, 255, 255, 0.25)"
-              : "rgba(0, 0, 0, 0.25)"
-          }, transparent 80%)`,
+          background: `radial-gradient(420px circle at ${position.x}px ${position.y}px, rgb(var(--accent) / 0.14), transparent 70%)`,
         }}
       />
       {children}
