@@ -4,31 +4,33 @@
 
 @layer base {
   :root {
-    --bg: 245 239 230;
-    --surface: 251 248 243;
-    --surface-2: 238 229 216;
-    --ink: 43 33 24;
-    --muted: 107 94 82;
-    --line: 226 215 199;
+    --bg: 243 235 221;
+    --surface: 251 247 240;
+    --surface-2: 236 225 207;
+    --ink: 42 31 23;
+    --muted: 104 90 77;
+    --line: 222 207 186;
     --accent: 194 83 31;
-    --accent-ink: 168 70 26;
-    --accent-soft: 248 222 204;
+    --accent-ink: 160 66 22;
+    --accent-soft: 246 220 200;
     --on-accent: 255 255 255;
-    --grid: 43 33 24;
+    --ochre: 233 162 59;
+    --grid: 42 31 23;
     color-scheme: light;
   }
 
   .dark {
-    --bg: 28 23 19;
-    --surface: 38 32 26;
-    --surface-2: 50 42 35;
+    --bg: 30 24 19;
+    --surface: 40 33 27;
+    --surface-2: 52 44 36;
     --ink: 243 235 223;
-    --muted: 184 170 154;
-    --line: 62 52 43;
-    --accent: 232 117 62;
-    --accent-ink: 240 145 92;
-    --accent-soft: 70 42 26;
-    --on-accent: 28 23 19;
+    --muted: 186 172 156;
+    --line: 64 54 45;
+    --accent: 234 122 66;
+    --accent-ink: 242 150 100;
+    --accent-soft: 74 44 27;
+    --on-accent: 30 24 19;
+    --ochre: 236 176 86;
     --grid: 243 235 223;
     color-scheme: dark;
   }
@@ -66,10 +68,6 @@
 }
 
 @layer components {
-  .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.18em] text-accent-ink;
-  }
-
   .chip {
     @apply inline-flex items-center rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-ink transition-colors duration-200;
   }
@@ -90,8 +88,8 @@
     @apply rounded-3xl border border-line bg-surface;
   }
 
-  .link-arrow {
-    @apply inline-flex items-center gap-1.5 font-semibold text-accent-ink underline-offset-4 hover:underline;
+  .link {
+    @apply font-semibold text-accent-ink underline decoration-accent/30 decoration-2 underline-offset-4 transition-colors hover:decoration-accent;
   }
 }
 
@@ -141,7 +139,6 @@
   }
 
   .animate-scroll,
-  .animate-float,
   .animate-wave,
   .site-header {
     animation: none !important;

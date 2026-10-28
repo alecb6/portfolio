@@ -22,6 +22,7 @@ export default {
         ink: token("ink"),
         muted: token("muted"),
         line: token("line"),
+        ochre: token("ochre"),
         accent: {
           DEFAULT: token("accent"),
           ink: token("accent-ink"),
@@ -32,16 +33,11 @@ export default {
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {
         scroll: {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-6px)" },
         },
         wave: {
           "0%, 60%, 100%": { transform: "rotate(0deg)" },
@@ -53,7 +49,6 @@ export default {
       },
       animation: {
         scroll: "scroll 40s linear infinite",
-        float: "float 6s ease-in-out infinite",
         wave: "wave 2.2s ease-in-out 0.6s 1",
       },
     },

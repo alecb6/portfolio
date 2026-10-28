@@ -14,6 +14,8 @@ export interface FeaturedProject {
   demoUrl?: string;
   // Solo para repositorios públicos
   repoUrl?: string;
+  // Cifras que se animan en la tarjeta grande
+  facts?: { value: number; label: string }[];
 }
 
 export const featuredProjects: FeaturedProject[] = [
@@ -52,6 +54,12 @@ export const featuredProjects: FeaturedProject[] = [
       alt: "Portada de OpoAlertas con el buscador de convocatorias por provincia y tipo de plaza",
     },
     demoUrl: "https://opoalertas.es",
+    facts: [
+      { value: 1520, label: "preguntas de test del temario" },
+      { value: 8, label: "leyes cubiertas por los tests" },
+      { value: 52, label: "provincias con página propia" },
+      { value: 6, label: "días a la semana leyendo el BOE" },
+    ],
   },
   {
     name: "Pinturas Cruz",

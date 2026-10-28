@@ -25,7 +25,7 @@ let request: Promise<Repo[]> | null = null;
 
 function fetchRepos(): Promise<Repo[]> {
   request ??= fetch(
-    `https://api.github.com/users/${profile.githubUser}/repos?per_page=100&sort=pushed`
+    `https://api.github.com/users/${profile.githubUser}/repos?per_page=100&sort=pushed`,
   )
     .then(async (res) => {
       if (!res.ok) {

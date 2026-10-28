@@ -88,11 +88,3 @@ export const skills = [
     items: ["Git", "GitHub", "Vercel", "Vitest", "Telegram Bot API", "Brevo"],
   },
 ];
-
-// Cifras fijas de OpoAlertas (salen del propio proyecto, no de una API)
-export const opoAlertasFacts = [
-  { value: 1520, label: "preguntas de test del temario" },
-  { value: 8, label: "leyes cubiertas por los tests" },
-  { value: 52, label: "provincias con página propia" },
-  { value: 6, label: "días a la semana leyendo el BOE" },
-];

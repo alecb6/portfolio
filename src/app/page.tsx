@@ -1,6 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import TechStrip from "@/components/slider/Slider";
-import Stats from "@/components/sections/Stats";
+import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import GithubActivity from "@/components/sections/GithubActivity";
 import Experience from "@/components/sections/Experience";
@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TechStrip />
-      <Stats />
+      <About />
       <Projects />
       <GithubActivity />
       <Experience />

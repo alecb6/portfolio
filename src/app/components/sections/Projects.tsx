@@ -1,28 +1,20 @@
-"use client";
-
 import Image from "next/image";
-import { ArrowUpRight, Lock } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
-import Reveal from "@/components/ui/Reveal";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Counter from "@/components/ui/Counter";
+import Section from "@/components/ui/Section";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import { featuredProjects, type FeaturedProject } from "@/data/projects";
 
 function ProjectLinks({ project }: { project: FeaturedProject }) {
   return (
-    <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-6">
+    <p className="flex flex-wrap gap-x-6 gap-y-2">
       {project.demoUrl && (
         <a
           href={project.demoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-arrow group/link"
+          className="link"
         >
           Ver la web
-          <ArrowUpRight
-            size={16}
-            className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-          />
         </a>
       )}
       {project.repoUrl ? (
@@ -30,80 +22,72 @@ function ProjectLinks({ project }: { project: FeaturedProject }) {
           href={project.repoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted underline-offset-4 hover:text-ink hover:underline"
+          className="link"
         >
-          <FaGithub /> Código
+          Código en GitHub
         </a>
       ) : (
-        <span className="inline-flex items-center gap-1.5 text-sm text-muted">
-          <Lock size={14} /> Código privado
-        </span>
+        <span className="text-muted">Código privado</span>
       )}
-    </div>
-  );
-}
-
-function Technologies({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-5 flex flex-wrap gap-2">
-      {items.map((technology) => (
-        <li key={technology} className="chip">
-          {technology}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Meta({ project }: { project: FeaturedProject }) {
-  return (
-    <p className="font-mono text-xs uppercase tracking-wider text-muted">
-      {project.year} · {project.type}
     </p>
   );
 }
 
-function WideCard({
-  project,
-  reverse,
-}: {
-  project: FeaturedProject;
-  reverse: boolean;
-}) {
+function Technologies({ items }: { items: string[] }) {
+  return <p className="text-sm text-muted">{items.join(", ")}</p>;
+}
+
+function Feature({ project }: { project: FeaturedProject }) {
   return (
-    <SpotlightCard className="card group transition-shadow duration-300 hover:shadow-[0_30px_60px_-35px_rgb(var(--ink)/0.45)]">
-      <div
-        className={`grid lg:grid-cols-[1.15fr_1fr] ${
-          reverse ? "lg:[&>*:first-child]:order-2" : ""
-        }`}
-      >
-        {project.image && (
-          <div className="flex items-center border-b border-line bg-surface-2 p-5 md:p-8 lg:border-b-0">
-            <Image
-              src={project.image.src}
-              alt={project.image.alt}
-              width={1280}
-              height={800}
-              className="h-auto w-full rounded-xl border border-line shadow-[0_18px_40px_-24px_rgb(var(--ink)/0.5)] transition-transform duration-700 ease-out group-hover:-rotate-1 group-hover:scale-[1.02]"
-            />
-          </div>
-        )}
-        <div className="flex flex-col p-7 md:p-10">
-          <Meta project={project} />
-          <h3 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            {project.name}
-          </h3>
-          <p className="mt-4 text-lg leading-relaxed text-muted">
-            {project.summary}
-          </p>
-          <ul className="mt-6 space-y-2.5">
-            {project.highlights.map((highlight) => (
-              <li key={highlight} className="flex gap-3 leading-snug">
-                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
-                {highlight}
-              </li>
+    <SpotlightCard className="card group">
+      {project.image && (
+        <div className="border-b border-line bg-surface-2 p-4 md:p-8">
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            width={1280}
+            height={800}
+            priority
+            className="h-auto w-full rounded-xl border border-line shadow-[0_18px_40px_-24px_rgb(var(--ink)/0.5)] transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+          />
+        </div>
+      )}
+      <div className="p-6 md:p-10">
+        <p className="text-sm text-muted">
+          {project.type}, {project.year}
+        </p>
+        <h3 className="mt-2 font-display text-4xl font-semibold tracking-tight md:text-5xl">
+          {project.name}
+        </h3>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed">
+          {project.summary}
+        </p>
+
+        {project.facts && (
+          <dl className="my-10 grid grid-cols-2 gap-x-6 gap-y-8 border-y border-line py-8 md:grid-cols-4">
+            {project.facts.map(({ value, label }) => (
+              <div key={label} className="flex flex-col-reverse justify-end">
+                <dt className="mt-1 text-sm leading-snug text-muted">
+                  {label}
+                </dt>
+                <dd className="font-display text-4xl font-semibold text-accent-ink">
+                  <Counter value={value} />
+                </dd>
+              </div>
             ))}
-          </ul>
+          </dl>
+        )}
+
+        <ul className="grid gap-x-10 gap-y-3 md:grid-cols-2">
+          {project.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-3 leading-snug">
+              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
+              {highlight}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 space-y-4">
           <Technologies items={project.technologies} />
           <ProjectLinks project={project} />
         </div>
@@ -112,49 +96,85 @@ function WideCard({
   );
 }
 
-function CompactCard({ project }: { project: FeaturedProject }) {
+function Medium({ project }: { project: FeaturedProject }) {
   return (
-    <SpotlightCard className="card group h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-32px_rgb(var(--ink)/0.45)]">
-      <div className="flex h-full flex-col p-7">
-        <Meta project={project} />
-        <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">
+    <SpotlightCard className="group grid items-center gap-8 rounded-3xl border border-line md:grid-cols-[1fr_1.1fr] md:p-8">
+      {project.image && (
+        <Image
+          src={project.image.src}
+          alt={project.image.alt}
+          width={1280}
+          height={720}
+          className="h-auto w-full rounded-xl border border-line transition-transform duration-500 group-hover:-rotate-1"
+        />
+      )}
+      <div className="p-6 pt-0 md:p-0">
+        <p className="text-sm text-muted">
+          {project.type}, {project.year}
+        </p>
+        <h3 className="mt-2 font-display text-3xl font-semibold tracking-tight">
           {project.name}
         </h3>
-        <p className="mt-3 leading-relaxed text-muted">{project.summary}</p>
-        <Technologies items={project.technologies} />
-        <ProjectLinks project={project} />
+        <p className="mt-3 leading-relaxed">{project.summary}</p>
+        <ul className="mt-5 space-y-2">
+          {project.highlights.slice(0, 3).map((highlight) => (
+            <li key={highlight} className="flex gap-3 text-sm leading-snug">
+              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent" />
+              {highlight}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 space-y-3">
+          <Technologies items={project.technologies} />
+          <ProjectLinks project={project} />
+        </div>
       </div>
     </SpotlightCard>
   );
 }
 
+function Row({ project }: { project: FeaturedProject }) {
+  return (
+    <li className="grid gap-2 py-7 md:grid-cols-[5rem_1fr] md:gap-6">
+      <p className="font-display text-xl text-muted">{project.year}</p>
+      <div>
+        <h3 className="font-display text-2xl font-semibold tracking-tight">
+          {project.name}
+          <span className="mt-1 block font-sans text-sm font-normal text-muted sm:ml-3 sm:mt-0 sm:inline sm:align-middle">
+            {project.type}
+          </span>
+        </h3>
+        <p className="mt-2 max-w-2xl leading-relaxed">{project.summary}</p>
+        <div className="mt-3 space-y-2">
+          <Technologies items={project.technologies} />
+          <ProjectLinks project={project} />
+        </div>
+      </div>
+    </li>
+  );
+}
+
 export default function Projects() {
-  const withImage = featuredProjects.filter((project) => project.image);
-  const rest = featuredProjects.filter((project) => !project.image);
+  const [feature, medium, ...rest] = featuredProjects;
 
   return (
-    <section id="proyectos" className="container py-16 md:py-24">
-      <SectionHeading
-        eyebrow="Proyectos"
-        title="Cosas que he construido"
-        intro="Desde una web en producción que lee el BOE cada mañana hasta los proyectos con los que aprendí cada tecnología."
-      />
-
+    <Section
+      id="proyectos"
+      title="Proyectos"
+      intro="Una web en producción, la web de un negocio y los proyectos con los que aprendí cada tecnología."
+    >
       <div className="space-y-8">
-        {withImage.map((project, i) => (
-          <Reveal key={project.repoName}>
-            <WideCard project={project} reverse={i % 2 === 1} />
-          </Reveal>
-        ))}
+        <Feature project={feature} />
+        <Medium project={medium} />
       </div>
-
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {rest.map((project, i) => (
-          <Reveal key={project.repoName} delay={(i % 2) * 0.08} className="h-full">
-            <CompactCard project={project} />
-          </Reveal>
+      <h3 className="mt-16 font-display text-2xl font-semibold">
+        Más proyectos
+      </h3>
+      <ul className="mt-2 divide-y divide-line border-b border-line">
+        {rest.map((project) => (
+          <Row key={project.repoName} project={project} />
         ))}
-      </div>
-    </section>
+      </ul>
+    </Section>
   );
 }

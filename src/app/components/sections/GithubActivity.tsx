@@ -1,17 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Counter from "@/components/ui/Counter";
-import Reveal from "@/components/ui/Reveal";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Section from "@/components/ui/Section";
 import { featuredProjects } from "@/data/projects";
 import { profile } from "@/data/profile";
 import { useGithubRepos, type Repo } from "@/hooks/useGithubRepos";
 
 const featuredRepoNames = new Set(
-  featuredProjects.map((project) => project.repoName.toLowerCase())
+  featuredProjects.map((project) => project.repoName.toLowerCase()),
 );
 
 // Tonos de la paleta para la barra de lenguajes
@@ -46,11 +44,10 @@ function languageShare(repos: Repo[]) {
 
 function Skeleton() {
   return (
-    <div className="grid gap-6 lg:grid-cols-3" aria-label="Cargando actividad de GitHub">
-      {[0, 1, 2].map((i) => (
-        <div key={i} className="card h-36 animate-pulse bg-surface-2/60" />
-      ))}
-    </div>
+    <div
+      className="grid h-32 animate-pulse gap-6 rounded-2xl bg-surface-2/60 md:grid-cols-3"
+      aria-label="Cargando datos de GitHub"
+    />
   );
 }
 
@@ -58,33 +55,29 @@ export default function GithubActivity() {
   const state = useGithubRepos();
 
   return (
-    <section id="github" className="container py-16 md:py-24">
-      <SectionHeading
-        eyebrow="GitHub en directo"
-        title="Lo último en mi GitHub"
-        intro="Datos cargados ahora mismo desde la API de GitHub. Los proyectos privados, como OpoAlertas o Pinturas Cruz, no salen aquí."
-      />
-
+    <Section
+      id="github"
+      title="En GitHub"
+      intro="Cargado ahora mismo desde la API de GitHub. Los proyectos privados, como OpoAlertas o Pinturas Cruz, no salen aquí."
+    >
       {state.status === "loading" && <Skeleton />}
 
       {state.status === "error" && (
-        <p className="card p-7 text-muted">
-          No se ha podido conectar con GitHub en este momento.{" "}
+        <p className="text-muted">
+          GitHub no responde ahora mismo.{" "}
           <a
             href={profile.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-arrow"
+            className="link"
           >
-            Ver el perfil directamente <ArrowUpRight size={16} />
+            Ver mi perfil en GitHub
           </a>
         </p>
       )}
 
-      {state.status === "ready" && (
-        <GithubContent repos={state.repos} />
-      )}
-    </section>
+      {state.status === "ready" && <GithubContent repos={state.repos} />}
+    </Section>
   );
 }
 
@@ -92,103 +85,106 @@ function GithubContent({ repos }: { repos: Repo[] }) {
   const latest = repos[0];
   const languages = languageShare(repos);
   const others = repos.filter(
-    (repo) => !featuredRepoNames.has(repo.name.toLowerCase())
+    (repo) => !featuredRepoNames.has(repo.name.toLowerCase()),
   );
 
   return (
     <>
-      <div className="grid gap-6 lg:grid-cols-3">
-        <Reveal className="card p-7">
-          <p className="eyebrow">Repositorios públicos</p>
-          <p className="mt-4 font-display text-6xl font-semibold">
+      <dl className="grid gap-8 md:grid-cols-3 md:divide-x md:divide-line">
+        <div className="flex flex-col-reverse justify-end">
+          <dt className="mt-1 text-muted">repositorios públicos propios</dt>
+          <dd className="font-display text-5xl font-semibold">
             <Counter value={repos.length} />
-          </p>
-          <p className="mt-2 text-sm text-muted">propios, sin contar forks</p>
-        </Reveal>
+          </dd>
+        </div>
 
         {latest && (
-          <Reveal delay={0.08} className="card p-7">
-            <p className="eyebrow">Última actividad</p>
-            <a
-              href={latest.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 block font-display text-2xl font-semibold hover:text-accent-ink"
-            >
-              {latest.name}
-            </a>
-            <p className="mt-2 text-sm text-muted">
-              Actualizado {timeAgo(latest.pushed_at)}
-            </p>
-          </Reveal>
+          <div className="md:pl-8">
+            <dt className="text-muted">Último repositorio actualizado</dt>
+            <dd className="mt-2">
+              <a
+                href={latest.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-display text-2xl font-semibold hover:text-accent-ink"
+              >
+                {latest.name}
+              </a>
+              <span className="block text-sm text-muted">
+                {timeAgo(latest.pushed_at)}
+              </span>
+            </dd>
+          </div>
         )}
 
         {languages.length > 0 && (
-          <Reveal delay={0.16} className="card p-7">
-            <p className="eyebrow">Lenguajes</p>
-            <div className="mt-5 flex h-3 overflow-hidden rounded-full bg-surface-2">
-              {languages.map(({ name, share }, i) => (
-                <motion.span
-                  key={name}
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${share}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.9, delay: 0.2 + i * 0.1, ease: "easeOut" }}
-                  style={{ background: languageColors[i] }}
-                  className="h-full"
-                />
-              ))}
-            </div>
-            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-sm">
-              {languages.map(({ name, share }, i) => (
-                <li key={name} className="flex items-center gap-1.5">
-                  <span
-                    className="size-2.5 rounded-full"
+          <div className="md:pl-8">
+            <dt className="text-muted">Lenguajes por repositorio</dt>
+            <dd>
+              <div className="mt-3 flex h-2.5 overflow-hidden rounded-full bg-surface-2">
+                {languages.map(({ name, share }, i) => (
+                  <motion.span
+                    key={name}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${share}%` }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.9,
+                      delay: 0.2 + i * 0.1,
+                      ease: "easeOut",
+                    }}
                     style={{ background: languageColors[i] }}
+                    className="h-full"
                   />
-                  {name}
-                  <span className="text-muted">{Math.round(share)}%</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+                ))}
+              </div>
+              <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                {languages.map(({ name, share }, i) => (
+                  <li key={name} className="flex items-center gap-1.5">
+                    <span
+                      className="size-2.5 rounded-full"
+                      style={{ background: languageColors[i] }}
+                    />
+                    {name}
+                    <span className="text-muted">{Math.round(share)} %</span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
         )}
-      </div>
+      </dl>
 
       {others.length > 0 && (
-        <Reveal className="mt-6">
-          <ul className="card divide-y divide-line">
-            {others.map((repo) => (
-              <li key={repo.id}>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 px-7 py-5 transition-colors hover:bg-surface-2/50"
-                >
-                  <FaGithub className="shrink-0 text-muted" size={20} />
-                  <div className="min-w-0 flex-1">
-                    <p className="font-semibold group-hover:text-accent-ink">
-                      {repo.name}
-                    </p>
-                    {repo.description && (
-                      <p className="truncate text-sm text-muted">
-                        {repo.description}
-                      </p>
-                    )}
-                  </div>
-                  {repo.language && (
-                    <span className="chip hidden sm:inline-flex">{repo.language}</span>
+        <ul className="mt-12 divide-y divide-line border-y border-line">
+          {others.map((repo) => (
+            <li key={repo.id}>
+              <a
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 py-5"
+              >
+                <FaGithub className="shrink-0 text-muted" size={20} />
+                <span className="min-w-0 flex-1">
+                  <span className="block font-semibold underline-offset-4 group-hover:text-accent-ink group-hover:underline">
+                    {repo.name}
+                  </span>
+                  {repo.description && (
+                    <span className="block truncate text-sm text-muted">
+                      {repo.description}
+                    </span>
                   )}
-                  <ArrowUpRight
-                    size={18}
-                    className="shrink-0 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-ink"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+                </span>
+                {repo.language && (
+                  <span className="hidden text-sm text-muted sm:inline">
+                    {repo.language}
+                  </span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
       )}
     </>
   );

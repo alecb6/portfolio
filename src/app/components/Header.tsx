@@ -41,7 +41,7 @@ function useActiveSection() {
           setActive(links.some((link) => link.id === id) ? id : null);
         });
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      { rootMargin: "-45% 0px -50% 0px" },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -85,7 +85,11 @@ export default function Header() {
                     <motion.span
                       layoutId="nav-active"
                       className="absolute inset-0 -z-10 rounded-full bg-accent-soft"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 32,
+                      }}
                     />
                   )}
                   {label}

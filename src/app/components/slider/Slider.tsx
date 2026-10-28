@@ -51,13 +51,15 @@ function Row({ hidden = false }: { hidden?: boolean }) {
         <li
           key={name}
           className="group flex min-w-[96px] flex-col items-center gap-2 px-5 text-muted"
-          style={{ "--brand": color ?? "rgb(var(--ink))" } as React.CSSProperties}
+          style={
+            { "--brand": color ?? "rgb(var(--ink))" } as React.CSSProperties
+          }
         >
           <Icon
             size={36}
             className="transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110 group-hover:text-[color:var(--brand)]"
           />
-          <span className="font-mono text-[11px] tracking-wide transition-colors group-hover:text-ink">
+          <span className="text-xs transition-colors group-hover:text-ink">
             {name}
           </span>
         </li>
@@ -68,7 +70,10 @@ function Row({ hidden = false }: { hidden?: boolean }) {
 
 export default function TechStrip() {
   return (
-    <section aria-label="Tecnologías con las que trabajo" className="border-y border-line bg-surface/60 py-7">
+    <section
+      aria-label="Tecnologías con las que trabajo"
+      className="border-y border-line bg-surface/60 py-7"
+    >
       <div className="marquee overflow-hidden">
         <div className="flex w-max animate-scroll">
           <Row />

@@ -1,37 +1,32 @@
-import Reveal from "@/components/ui/Reveal";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Section from "@/components/ui/Section";
 import { skills } from "@/data/profile";
 
 export default function Skills() {
   return (
-    <section id="conocimientos" className="container py-16 md:py-24">
-      <SectionHeading
-        eyebrow="Conocimientos"
-        title="Con qué trabajo"
-        intro="Las tecnologías que he usado en el trabajo y en mis proyectos, agrupadas por área."
-      />
-      <div className="grid gap-6 md:grid-cols-2">
-        {skills.map(({ category, items }, i) => (
-          <Reveal key={category} delay={(i % 2) * 0.08} className="card p-7">
-            <div className="flex items-baseline justify-between">
-              <h3 className="font-display text-2xl font-semibold">{category}</h3>
-              <span className="font-mono text-xs text-muted">
-                {String(items.length).padStart(2, "0")}
-              </span>
-            </div>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {items.map((item) => (
-                <li
-                  key={item}
-                  className="chip cursor-default hover:-translate-y-0.5 hover:border-accent/60 hover:bg-accent-soft hover:text-accent-ink"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+    <Section
+      id="conocimientos"
+      title="Conocimientos"
+      intro="Las tecnologías que he usado en el trabajo y en mis proyectos."
+    >
+      <dl className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
+        {skills.map(({ category, items }) => (
+          <div key={category} className="border-t-2 border-ink pt-4">
+            <dt className="font-display text-xl font-semibold">{category}</dt>
+            <dd className="mt-4">
+              <ul className="flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <li
+                    key={item}
+                    className="chip cursor-default hover:border-accent/60 hover:bg-accent-soft hover:text-accent-ink"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
         ))}
-      </div>
-    </section>
+      </dl>
+    </Section>
   );
 }

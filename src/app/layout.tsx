@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -17,12 +17,6 @@ const display = Fraunces({
 const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -57,8 +51,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F5EFE6" },
-    { media: "(prefers-color-scheme: dark)", color: "#1C1713" },
+    { media: "(prefers-color-scheme: light)", color: "#F3EBDD" },
+    { media: "(prefers-color-scheme: dark)", color: "#1E1813" },
   ],
 };
 
@@ -66,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html
       lang="es"
-      className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      className={`${display.variable} ${sans.variable}`}
       suppressHydrationWarning
     >
       <body>
