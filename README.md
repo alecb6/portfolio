@@ -41,6 +41,10 @@ portfolio/
 
 Añade una entrada en `src/app/data/projects.ts` y, si tiene captura, guárdala en `public/images/proyectos/`. Los repositorios públicos que no estén destacados salen solos en «Más en GitHub» (sin forks).
 
+## 📄 CV
+
+El CV descargable está en `public/cv/Alejandro-Cruz-Ballestero-CV.pdf` y se genera desde `cv/cv.html`. Para actualizarlo, edita el HTML, ábrelo en Chrome e imprímelo como PDF (A4, sin márgenes y con «Gráficos de fondo» activado).
+
 ## 📦 Instalación y uso
 
 ```bash
