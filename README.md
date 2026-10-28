@@ -1,46 +1,53 @@
 # Portfolio
 
-Este es mi portafolio personal desarrollado con tecnologías modernas como **React**, **Tailwind CSS** y **Vite**. Incluye mis proyectos, información sobre mí y formas de contacto.
+Mi portafolio personal: quién soy, mis proyectos, mi experiencia y las tecnologías que uso.
 
-## 🚀 Tecnologías utilizadas
-
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/)
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
-- [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
-
-## 📸 Captura
+**[portfolio-alexcb.vercel.app](https://portfolio-alexcb.vercel.app)**
 
 ![Portfolio Screenshot](./public/images/og-image.png)
 
+## 🧩 Secciones
+
+- **Inicio**: presentación y tecnologías principales.
+- **Proyectos**: proyectos destacados (con capturas, tecnologías y enlaces) y, debajo, el resto de mis repositorios públicos, cargados con la API de GitHub.
+- **Experiencia**: trayectoria profesional.
+- **Conocimientos**: tecnologías agrupadas por área.
+
+## 🚀 Tecnologías utilizadas
+
+- [Next.js 15](https://nextjs.org/) (App Router) y [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://motion.dev/) para las animaciones
+- [next-themes](https://github.com/pacocoursey/next-themes) para el modo claro y oscuro
+- [Sentry](https://sentry.io/) y Vercel Analytics / Speed Insights
+
 ## 📁 Estructura del proyecto
 
-- portfolio/
-    - public/
-    - src/
-        - components/
-        - pages/
-        - assets/
-    - package.json
-    - vite.config.js
+```
+portfolio/
+├── public/
+│   └── images/            # Imagen para redes y capturas de los proyectos
+├── src/app/
+│   ├── components/        # Cabecera, slider, iconos y componentes de UI
+│   ├── data/projects.ts   # Proyectos destacados
+│   ├── pages/             # Proyectos, experiencia y conocimientos
+│   ├── layout.tsx
+│   └── page.tsx           # Inicio
+└── next.config.ts         # Rutas en español (/proyectos, /experiencia, /conocimientos)
+```
+
+## ✏️ Añadir un proyecto destacado
+
+Añade una entrada en `src/app/data/projects.ts` y, si tiene captura, guárdala en `public/images/proyectos/`. Los repositorios públicos que no estén destacados salen solos en «Más en GitHub» (sin forks).
 
 ## 📦 Instalación y uso
 
 ```bash
-# Clonar el repositorio
 git clone https://github.com/alecb6/portfolio.git
-
-# Entrar al directorio
 cd portfolio
-
-# Instalar dependencias
 npm install
-
-# Ejecutar el servidor de desarrollo
 npm run dev
-
 ```
 
-Puedes contactarme a través de LinkedIn o cananpa2014.jr@gmail.com.
+Puedes contactarme a través de [LinkedIn](https://www.linkedin.com/in/alejandro-cruz-ballestero-347a87349/) o en cananpa2014.jr@gmail.com.

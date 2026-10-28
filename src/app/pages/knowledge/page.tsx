@@ -5,17 +5,41 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import ClickSpark from "@/components/ui/ClickSpark";
 
-/**
- * This component renders the knowledge page, which is a page that is
- * displayed when the user navigates to the knowledge route.
- *
- * The component uses the usePathname hook to get the current path, and
- * the useEffect hook to scroll to the top of the page when the path
- * changes.
- *
- * The component returns a div with an h1 element inside it, which is
- * centered and has a font size of 3xl.
- */
+const knowledge = [
+  {
+    category: "Frontend",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Astro",
+      "Angular",
+    ],
+  },
+  {
+    category: "Backend",
+    technologies: ["PHP", "Laravel", "Symfony", "Node.js", "APIs REST"],
+  },
+  {
+    category: "Bases de datos",
+    technologies: ["MySQL", "SQLite", "Turso", "Drizzle ORM", "Doctrine ORM"],
+  },
+  {
+    category: "Herramientas y servicios",
+    technologies: [
+      "Git",
+      "GitHub",
+      "Vercel",
+      "Vitest",
+      "Telegram Bot API",
+      "Brevo",
+    ],
+  },
+];
 
 export default function Knowledge() {
   const currentPage = usePathname();
@@ -39,8 +63,31 @@ export default function Knowledge() {
           sparkCount={8}
           duration={400}
         >
-          <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center pt-12">
-            <h1 className="text-3xl">Conocimiento</h1>
+          <div className="flex flex-col items-center max-w-4xl mx-auto mt-16">
+            <h1 className="text-5xl font-bold mb-16 text-center text-primaryText">
+              Conocimientos
+            </h1>
+
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+              {knowledge.map(({ category, technologies }) => (
+                <div
+                  key={category}
+                  className="bg-secondary/30 rounded-lg p-6 hover:bg-secondary/40 text-primaryText"
+                >
+                  <h2 className="text-xl font-bold mb-4">{category}</h2>
+                  <ul className="flex flex-wrap gap-2">
+                    {technologies.map((technology) => (
+                      <li
+                        key={technology}
+                        className="text-sm px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-700"
+                      >
+                        {technology}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </ClickSpark>
       </motion.div>

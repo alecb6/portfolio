@@ -6,10 +6,6 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/perfil',
-        destination: '/pages/profile',
-      },
-      {
         source: '/experiencia',
         destination: '/pages/experience',
       },
