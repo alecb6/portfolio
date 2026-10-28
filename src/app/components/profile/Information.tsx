@@ -1,3 +1,5 @@
+import { FaDownload } from "react-icons/fa";
+
 const Information = () => {
   return (
     <div className="items-center justify-items-center relative overflow-hidden mt-12">
@@ -33,6 +35,13 @@ const Information = () => {
           </p>
         </div>
       </div>
+      <a
+        href="/cv/Alejandro-Cruz-Ballestero-CV.pdf"
+        download
+        className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-full bg-secondary text-white hover:bg-secondary/80 transition-all ease-in-out"
+      >
+        <FaDownload /> Descargar CV
+      </a>
     </div>
   );
 };
