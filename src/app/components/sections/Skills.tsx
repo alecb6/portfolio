@@ -1,12 +1,12 @@
 import Section from "@/components/ui/Section";
-import { skills } from "@/data/profile";
+import { languages, skills } from "@/data/profile";
 
 export default function Skills() {
   return (
     <Section
       id="conocimientos"
       title="Conocimientos"
-      intro="Las tecnologías que he usado en el trabajo y en mis proyectos."
+      intro="Las tecnologías que he usado en el trabajo y en mis proyectos, y los idiomas que hablo."
     >
       <dl className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
         {skills.map(({ category, items }) => (
@@ -27,6 +27,18 @@ export default function Skills() {
           </div>
         ))}
       </dl>
+
+      <div className="mt-10 border-t-2 border-ink pt-4">
+        <h3 className="font-display text-xl font-semibold">Idiomas</h3>
+        <dl className="mt-4 flex flex-wrap gap-x-10 gap-y-3">
+          {languages.map(({ name, level }) => (
+            <div key={name} className="flex items-baseline gap-2">
+              <dt className="font-medium">{name}</dt>
+              <dd className="text-muted">{level}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </Section>
   );
 }

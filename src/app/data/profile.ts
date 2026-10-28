@@ -88,3 +88,8 @@ export const skills = [
     items: ["Git", "GitHub", "Vercel", "Vitest", "Telegram Bot API", "Brevo"],
   },
 ];
+
+export const languages = [
+  { name: "Español", level: "Nativo" },
+  { name: "Inglés", level: "B2" },
+];
