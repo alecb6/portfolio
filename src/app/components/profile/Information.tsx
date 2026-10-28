@@ -1,3 +1,5 @@
+import { FaDownload } from "react-icons/fa";
+
 const Information = () => {
   return (
     <div className="items-center justify-items-center relative overflow-hidden mt-12">
@@ -10,7 +12,7 @@ const Information = () => {
       <div className="relative w-[100%] md:w-[600px] h-[320px] rounded-lg flex flex-col items-center justify-center p-4 text-primaryText">
         <div className="absolute top-0 right-0 border-t-4 border-r-4 border-primaryText w-8 h-8 animate-pulsing repeat-infinite"></div>
         <div className="absolute bottom-0 left-0 border-b-4 border-l-4 border-primaryText w-8 h-8 animate-pulsing repeat-infinite"></div>
-        <h2 className="text-2xl mb-6">Mi nombre es Alejandro </h2>
+        <h2 className="text-2xl mb-6">Mi nombre es Alejandro Cruz Ballestero</h2>
         <div className="font-thin text-clip text-base space-y-4">
           Soy un <span className="font-bold">desarrollador web</span> apasionado
           por crear soluciones digitales{" "}
@@ -33,6 +35,13 @@ const Information = () => {
           </p>
         </div>
       </div>
+      <a
+        href="/cv/Alejandro-Cruz-Ballestero-CV.pdf"
+        download
+        className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-full bg-secondary text-white hover:bg-secondary/80 transition-all ease-in-out"
+      >
+        <FaDownload /> Descargar CV
+      </a>
     </div>
   );
 };

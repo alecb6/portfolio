@@ -143,11 +143,11 @@ function NavigationMenuContent() {
               <FaLinkedin size={24} />
             </Link>
           </div>
+          <NavigationMenuItem>
+            <DarkModeButton />
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="absolute right-12 top-6 hidden md:flex">
-        <DarkModeButton />
-      </div>
     </header>
   );
 }

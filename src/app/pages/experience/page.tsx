@@ -1,6 +1,11 @@
 "use client";
 
-import { FaBuilding, FaCalendarAlt, FaLaptopCode } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaCalendarAlt,
+  FaGraduationCap,
+  FaLaptopCode,
+} from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -9,7 +14,7 @@ import ClickSpark from "@/components/ui/ClickSpark";
 export default function ExperiencePage() {
   const experiences = [
     {
-      company: "Empresa Tecnológica",
+      company: "Maccorp Exacta Change",
       position: "Desarrollador Web",
       period: "Febrero 2024 - Presente",
       description: [
@@ -25,6 +30,20 @@ export default function ExperiencePage() {
       position: "Peón de Obra / Ayudante de Pintor",
       period: "2020 - 2024",
       description: [],
+    },
+  ];
+
+  const education = [
+    {
+      title: "Técnico Superior en Desarrollo de Aplicaciones Web (DAW)",
+      period: "2021 - 2024",
+      description:
+        "Proyecto final: UrClothes, red social de moda con armario virtual hecha en Symfony.",
+    },
+    {
+      title: "Bachillerato de Ciencias",
+      center: "IES San Isidoro de Sevilla, Madrid",
+      period: "2019 - 2021",
     },
   ];
 
@@ -92,6 +111,45 @@ export default function ExperiencePage() {
                         : ""}
                     </ul>
                   </div>
+                </div>
+              ))}
+            </div>
+
+            <h2 className="text-4xl font-bold mt-20 mb-10 text-center text-primaryText">
+              Formación
+            </h2>
+
+            <div className="w-full space-y-10">
+              {education.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-secondary/30 rounded-lg p-6 hover:bg-secondary/40 text-primaryText"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center gap-4">
+                    <div className="bg-accent/50 p-3 rounded-full">
+                      <FaGraduationCap
+                        className="text-primaryText transition-all duration-300"
+                        size={24}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold">{item.title}</h3>
+                      {item.center && (
+                        <h4 className="text-lg text-primaryText">
+                          {item.center}
+                        </h4>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground transition-all duration-300">
+                      <FaCalendarAlt size={16} />
+                      <span>{item.period}</span>
+                    </div>
+                  </div>
+                  {item.description && (
+                    <p className="mt-4 ml-4 border-l-2 border-accent/50 pl-6">
+                      {item.description}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

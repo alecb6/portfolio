@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Alejandro Cruz Ballestero · CV</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #1c1c1e;
+    --muted: #5b5b63;
+    --line: #dcdce0;
+    --accent: #2f5d8a;
+    --side: #f3f4f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    font-size: 9pt;
+    line-height: 1.42;
+    display: grid;
+    grid-template-columns: 62mm 1fr;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  aside {
+    background: var(--side);
+    padding: 16mm 7mm 12mm 9mm;
+  }
+  main { padding: 16mm 12mm 12mm 9mm; }
+
+  h1 {
+    font-size: 21pt;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  .role {
+    margin-top: 2mm;
+    font-size: 11pt;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 6.5mm 0 2.5mm;
+    padding-bottom: 1.2mm;
+    border-bottom: 0.3mm solid var(--line);
+  }
+  aside h2:first-child { margin-top: 0; }
+
+  .contact li { list-style: none; margin-bottom: 1.6mm; }
+  .contact .label { display: block; font-size: 7pt; color: var(--muted); }
+  .contact a, .contact span.value { font-weight: 500; word-break: break-all; }
+
+  .skills h3 { font-size: 8pt; font-weight: 600; margin: 2.5mm 0 1mm; }
+  .skills h3:first-of-type { margin-top: 0; }
+  .skills p { color: var(--muted); }
+
+  .edu { margin-bottom: 3mm; }
+  .edu strong { display: block; font-weight: 600; }
+  .edu span { display: block; color: var(--muted); }
+
+  .summary { margin-top: 5mm; color: var(--ink); }
+
+  .item { margin-bottom: 3.6mm; break-inside: avoid; }
+  .item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+  }
+  .item-title { font-weight: 600; font-size: 9.5pt; }
+  .item-title a { color: var(--accent); font-weight: 500; font-size: 8.5pt; }
+  .date { color: var(--muted); font-size: 8pt; white-space: nowrap; }
+  .sub { color: var(--muted); }
+  .item ul { margin: 1mm 0 0 4mm; }
+  .item li { margin-bottom: 0.5mm; }
+  .item p { margin-top: 0.8mm; }
+  .stack { margin-top: 0.8mm; font-size: 8pt; color: var(--muted); }
+</style>
+</head>
+<body>
+  <aside>
+    <h2>Contacto</h2>
+    <ul class="contact">
+      <li><span class="label">Email</span><a href="mailto:cananpa2014.jr@gmail.com">cananpa2014.jr@gmail.com</a></li>
+      <li><span class="label">Portfolio</span><a href="https://portfolio-alexcb.vercel.app">portfolio-alexcb.vercel.app</a></li>
+      <li><span class="label">GitHub</span><a href="https://github.com/alecb6">github.com/alecb6</a></li>
+      <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/alejandro-cruz-ballestero-347a87349/">alejandro-cruz-ballestero</a></li>
+      <li><span class="label">Ubicación</span><span class="value">Madrid</span></li>
+    </ul>
+
+    <h2>Conocimientos</h2>
+    <div class="skills">
+      <h3>Frontend</h3>
+      <p>HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, Astro, Angular</p>
+      <h3>Backend</h3>
+      <p>PHP, Laravel, Symfony, Node.js, APIs REST</p>
+      <h3>Bases de datos</h3>
+      <p>MySQL, SQLite, Turso, Drizzle ORM, Doctrine ORM</p>
+      <h3>Herramientas</h3>
+      <p>Git, GitHub, Vercel, Vitest, Telegram Bot API, Brevo</p>
+    </div>
+
+    <h2>Formación</h2>
+    <div class="edu">
+      <strong>Técnico Superior en Desarrollo de Aplicaciones Web (DAW)</strong>
+      <span>2021 – 2024</span>
+    </div>
+    <div class="edu">
+      <strong>Bachillerato de Ciencias</strong>
+      <span>IES San Isidoro de Sevilla, Madrid</span>
+      <span>2019 – 2021</span>
+    </div>
+  </aside>
+
+  <main>
+    <h1>Alejandro Cruz Ballestero</h1>
+    <p class="role">Desarrollador Web Full Stack</p>
+    <p class="summary">
+      Desarrollador web con experiencia profesional en Laravel y PHP desde 2024 y proyectos propios en
+      producción con Next.js y TypeScript. Me gusta crear aplicaciones útiles de principio a fin: datos,
+      backend, interfaz y despliegue. Busco seguir aprendiendo y aportar valor trabajando en equipo.
+    </p>
+
+    <h2>Experiencia</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Desarrollador Web · Maccorp Exacta Change</span>
+        <span class="date">Feb 2024 – actualidad</span>
+      </div>
+      <ul>
+        <li>Desarrollo y mantenimiento de aplicaciones web con Laravel y PHP.</li>
+        <li>Consultas MySQL y optimización del rendimiento.</li>
+        <li>Interfaces de usuario con HTML, CSS y JavaScript, adaptadas a todos los dispositivos.</li>
+        <li>Integración de APIs y desarrollo de componentes interactivos.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Peón de obra / Ayudante de pintor · Empresa familiar</span>
+        <span class="date">2020 – 2024</span>
+      </div>
+    </div>
+
+    <h2>Proyectos</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">OpoAlertas · <a href="https://opoalertas.es">opoalertas.es</a></span>
+        <span class="date">2026</span>
+      </div>
+      <p>
+        Web en producción que lee cada mañana el BOE y publica las convocatorias de empleo público local con su
+        plazo calculado. Avisos diarios por email y por un bot de Telegram, cuentas sin contraseña, mapa por
+        provincias y más de 1.500 preguntas de test del temario.
+      </p>
+      <p class="stack">Next.js 16 · React 19 · TypeScript · Tailwind CSS · Drizzle ORM · Turso · Better Auth · Vitest · Vercel</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Pinturas Cruz · <a href="https://pinturascruz.vercel.app">pinturascruz.vercel.app</a></span>
+        <span class="date">2026</span>
+      </div>
+      <p>
+        Web de un negocio de pintura y reformas con presupuestador en cuatro pasos, contacto por WhatsApp
+        y galería con comparador antes/después.
+      </p>
+      <p class="stack">HTML · CSS · JavaScript · Vercel</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">UrClothes · proyecto final de DAW, en equipo</span>
+        <span class="date">2024</span>
+      </div>
+      <p>
+        Red social de moda: armario virtual, conjuntos, prendas según el tiempo (WeatherAPI), foro y amistades.
+      </p>
+      <p class="stack">Symfony 7 · PHP 8.2 · Doctrine ORM · Twig · MySQL</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">La Velada (clon) · <a href="https://la-velada-clone.vercel.app">la-velada-clone.vercel.app</a></span>
+        <span class="date">2025</span>
+      </div>
+      <p>Réplica de la web de La Velada del Año con páginas por luchador y combate.</p>
+      <p class="stack">Astro 5 · TypeScript · Tailwind CSS</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">JSConf España (landing)</span>
+        <span class="date">2025</span>
+      </div>
+      <p>Réplica de la portada de la JSConf España 2025 para practicar Angular.</p>
+      <p class="stack">Angular 19 · TypeScript · Tailwind CSS</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Red Social</span>
+        <span class="date">2023</span>
+      </div>
+      <p>Publicaciones, likes, amistades, mensajes, notificaciones y panel de administración.</p>
+      <p class="stack">PHP · MySQL · PHPMailer</p>
+    </div>
+  </main>
+</body>
+</html>
