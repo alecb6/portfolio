@@ -17,17 +17,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://alecb6.github.io/portfolio",
-    siteName: "Portfolio Clone | FullStack Developer Portfolio",
-    title: "Portfolio Clone | FullStack Developer Portfolio",
+    url: "https://portfolio-alexcb.vercel.app",
+    siteName: "Alex Portfolio | FullStack Developer Portfolio",
+    title: "Alex Portfolio | FullStack Developer Portfolio",
     description:
-      "Portfolio Clone - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
+      "Portfolio - Fullstack Developer Portfolio showcasing projects, skills and contact information.",
     images: [
       {
         url: "https://portfolio-alexcb.vercel.app/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Portfolio Clone | FullStack Developer Portfolio",
+        alt: "Alex Portfolio | FullStack Developer Portfolio",
       },
     ],
   },
