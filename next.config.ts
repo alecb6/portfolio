@@ -3,21 +3,14 @@ import type { NextConfig } from "next";
 // const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const nextConfig: NextConfig = {
-  async rewrites() {
+  // Antes eran páginas separadas: los enlaces antiguos llevan a su sección
+  async redirects() {
     return [
-      {
-        source: '/experiencia',
-        destination: '/pages/experience',
-      },
-      {
-        source: '/proyectos',
-        destination: '/pages/projects',
-      },
-      {
-        source: '/conocimientos',
-        destination: '/pages/knowledge',
-      },
-    ]
+      { source: "/proyectos", destination: "/#proyectos", permanent: false },
+      { source: "/experiencia", destination: "/#experiencia", permanent: false },
+      { source: "/conocimientos", destination: "/#conocimientos", permanent: false },
+      { source: "/pages/:path*", destination: "/", permanent: false },
+    ];
   },
 };
 

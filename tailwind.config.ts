@@ -1,65 +1,62 @@
 import type { Config } from "tailwindcss";
-import animations from "@midudev/tailwind-animations";
+
+// Colores definidos como canales RGB en globals.css para poder usar opacidad (bg-accent/20)
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
 
 export default {
   darkMode: "class",
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.25rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
     },
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        primaryText: {
-          DEFAULT: "var(--primary-text)",
-          foreground: "hsl(var(--primary-text-foreground",
-        },
-        secondary: {
-          DEFAULT: "#404040",
-          foreground: "hsl(var(--secondary-foreground))",
+        bg: token("bg"),
+        surface: token("surface"),
+        "surface-2": token("surface-2"),
+        ink: token("ink"),
+        muted: token("muted"),
+        line: token("line"),
+        accent: {
+          DEFAULT: token("accent"),
+          ink: token("accent-ink"),
+          soft: token("accent-soft"),
+          on: token("on-accent"),
         },
       },
-      container: {
-        center: true,
-        padding: "2rem",
-        screens: {
-          "2xl": "1400px",
-        },
+      fontFamily: {
+        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
         scroll: {
           from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-800px)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
+        },
+        wave: {
+          "0%, 60%, 100%": { transform: "rotate(0deg)" },
+          "10%, 30%": { transform: "rotate(14deg)" },
+          "20%": { transform: "rotate(-8deg)" },
+          "40%": { transform: "rotate(-4deg)" },
+          "50%": { transform: "rotate(10deg)" },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        scroll: "scroll 35s linear infinite",
+        scroll: "scroll 40s linear infinite",
+        float: "float 6s ease-in-out infinite",
+        wave: "wave 2.2s ease-in-out 0.6s 1",
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), animations],
+  plugins: [],
 } satisfies Config;
