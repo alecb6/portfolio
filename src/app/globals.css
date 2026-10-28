@@ -20,6 +20,7 @@ header {
   position: fixed;
   top: 30px;
   z-index: 99;
+  min-width: fit-content;
 }
 
 @media (min-width: 768px) {
@@ -110,7 +111,7 @@ header {
 
 @keyframes header-gap-close {
   0% {
-    gap: 60px;
+    gap: 40px;
   }
   100% {
     gap: 10px;

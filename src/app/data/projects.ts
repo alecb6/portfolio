@@ -71,6 +71,7 @@ export const featuredProjects: FeaturedProject[] = [
       src: "/images/proyectos/pinturas-cruz.jpg",
       alt: "Portada de la web de Pinturas Cruz con el botón para calcular el presupuesto",
     },
+    demoUrl: "https://pinturascruz.vercel.app",
   },
   {
     name: "UrClothes",
@@ -101,6 +102,20 @@ export const featuredProjects: FeaturedProject[] = [
     technologies: ["Astro 5", "TypeScript", "Tailwind CSS 4", "Vercel"],
     demoUrl: "https://la-velada-clone.vercel.app",
     repoUrl: "https://github.com/alecb6/la-velada-clone",
+  },
+  {
+    name: "JSConf España (landing)",
+    repoName: "JSConf-Alex",
+    year: "2025",
+    type: "Proyecto de práctica",
+    summary:
+      "Réplica de la portada de la JSConf España 2025 para practicar Angular y Tailwind CSS.",
+    highlights: [
+      "Cabecera y portada como componentes de Angular",
+      "Diseño responsive y animaciones con Tailwind CSS",
+    ],
+    technologies: ["Angular 19", "TypeScript", "Tailwind CSS"],
+    repoUrl: "https://github.com/alecb6/JSConf-Alex",
   },
   {
     name: "Red Social",
